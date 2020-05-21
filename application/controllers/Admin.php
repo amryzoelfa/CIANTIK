@@ -68,4 +68,12 @@ class Admin extends CI_Controller
             redirect('Master/DataApoteker');
         }
     }
+    public function antrian_umum(){
+        $data['antrian'] = $this->Admin_model->getAntrianUmum();
+        $this->template->tampil('Admin/antrian_umum', $data);
+    }
+    public function antrian_gigi(){
+        $data['antrian'] = $this->Admin_model->getAntrianGigi();
+        $this->template->tampil('Admin/antrian_gigi');
+    }
 }

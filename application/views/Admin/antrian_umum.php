@@ -24,7 +24,7 @@
                       <th>Nama</th>
                       <th>Status Periksa</th>
                       <th>Status Obat</th>
-                      <!-- <th>Tindakan</th> -->
+                     
                     </tr>
                   </tfoot>
                   <tbody>

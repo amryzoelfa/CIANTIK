@@ -1,5 +1,6 @@
 <?php
 $getUser = $this->session->userdata('session_user');
+$getNama = $this->session->userdata('session_nama');
 $getAkses = $this->session->userdata('session_akses');
 if ($getUser == '' or $getAkses == '') {
   redirect('login');

@@ -47,4 +47,16 @@ class Dashboard_model extends CI_Model
         $query = "SELECT COUNT(*) as totalkh FROM tb_antrian WHERE tanggal=CURRENT_DATE()";
         return $this->db->query($query)->row_array();
     }
+
+    public function getAntrianUmum()
+    {
+        $query = "SELECT COUNT(*) as totalU FROM tb_antrian WHERE tanggal=CURRENT_DATE() AND id_poli=1";
+        return $this->db->query($query)->row_array();
+    }
+
+    public function getAntrianGigi()
+    {
+        $query = "SELECT COUNT(*) as totalG FROM tb_antrian WHERE tanggal=CURRENT_DATE() AND id_poli=2";
+        return $this->db->query($query)->row_array();
+    }
 }

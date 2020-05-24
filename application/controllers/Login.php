@@ -21,6 +21,7 @@ class Login extends CI_Controller
             foreach ($cek as $row) {
                 $id = $row->id_user;
                 $user = $row->username;
+                $nama = $row->nama;
                 $foto = $row->foto;
                 $akses = $row->id_akses;
             }
@@ -28,6 +29,7 @@ class Login extends CI_Controller
             $this->session->set_userdata('session_user', $user);
             $this->session->set_userdata('session_foto', $foto);
             $this->session->set_userdata('session_akses', $akses);
+            $this->session->set_userdata('session_nama', $nama);
             // redirect('Admin');
             $this->session->set_flashdata('massage', '<div class="alert alert-danger" role="alert">Selamat Sudah Login</div>' . $user);
             if ($akses == 1) {

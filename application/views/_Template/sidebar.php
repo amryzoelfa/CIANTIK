@@ -11,9 +11,9 @@ $getAkses = $this->session->userdata('session_akses');
                                                                                   } else if ($getAkses == 2) {
                                                                                     echo base_url('Pasien');
                                                                                   } else if ($getAkses == 3) {
-                                                                                    echo base_url('Dokter/Umum');
+                                                                                    echo base_url('Dokter');
                                                                                   } else if ($getAkses == 4) {
-                                                                                    echo base_url('Dokter/Gigi');
+                                                                                    echo base_url('Dokter');
                                                                                   } else if ($getAkses == 5) {
                                                                                     echo base_url('Apoteker');
                                                                                   } ?>">
@@ -33,9 +33,9 @@ $getAkses = $this->session->userdata('session_akses');
                               } else if ($getAkses == 2) {
                                 echo base_url('Pasien');
                               } else if ($getAkses == 3) {
-                                echo base_url('Dokter/Umum');
+                                echo base_url('Dokter');
                               } else if ($getAkses == 4) {
-                                echo base_url('Dokter/Gigi');
+                                echo base_url('Dokter');
                               } else if ($getAkses == 5) {
                                 echo base_url('Apoteker');
                               } ?> ">
@@ -97,9 +97,9 @@ $getAkses = $this->session->userdata('session_akses');
       <a class="nav-link" href="<?php if ($getAkses == 2) {
                                   echo base_url('Antrian/Pasien');
                                 } else if ($getAkses == 3) {
-                                  echo base_url('Antrian/drUmum');
+                                  echo base_url('Antrian/antrianUmum');
                                 } else if ($getAkses == 4) {
-                                  echo base_url('Antrian/drGigi');
+                                  echo base_url('Antrian/antrianGigi');
                                 } else if ($getAkses == 5) {
                                   echo base_url('Antrian/Apoteker');
                                 } ?>">

@@ -1,6 +1,6 @@
 <div id="content">
 
-        <?php include 'assets/navbar.php'; ?>
+        <include 'assets/navbar.php'; ?>
 
         <!-- Begin Page Content -->
         <div class="container-fluid">

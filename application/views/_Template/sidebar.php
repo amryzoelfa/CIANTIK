@@ -97,9 +97,9 @@ $getAkses = $this->session->userdata('session_akses');
       <a class="nav-link" href="<?php if ($getAkses == 2) {
                                   echo base_url('Antrian/Pasien');
                                 } else if ($getAkses == 3) {
-                                  echo base_url('Antrian/antrianUmum');
+                                  echo base_url('Dokter/antrianUmum');
                                 } else if ($getAkses == 4) {
-                                  echo base_url('Antrian/antrianGigi');
+                                  echo base_url('Dokter/antrianGigi');
                                 } else if ($getAkses == 5) {
                                   echo base_url('Antrian/Apoteker');
                                 } ?>">

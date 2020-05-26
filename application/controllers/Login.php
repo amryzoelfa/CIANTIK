@@ -37,9 +37,9 @@ class Login extends CI_Controller
             } elseif ($akses == 2) {
                 redirect('Pasien');
             } else if ($akses == 3) {
-                redirect('Dokter Umum');
+                redirect('Dokter');
             } else if ($akses == 4) {
-                redirect('Dokter Gigi');
+                redirect('Dokter');
             } else if ($akses == 5) {
                 redirect('Apoteker');
             }

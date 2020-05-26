@@ -11,6 +11,7 @@ class Dokter extends CI_Controller
 
     function index()
     {
+    
         $data['jumlahPasien'] = $this->Dashboard_model->getJumlahPasien();
         $data['jumlahDokter'] = $this->Dashboard_model->getJumlahDokter();
         $data['jumlahApoteker'] = $this->Dashboard_model->getJumlahApoteker();
@@ -18,7 +19,7 @@ class Dokter extends CI_Controller
         $this->template->tampil('Dokter/dashboard_view', $data);
     }
 
-    function antrianUmum()
-    {
-    }
+    // function antrianUmum()
+    // {
+    // }
 }

@@ -59,8 +59,8 @@ $getAkses = $this->session->userdata('session_akses');
       </a>
       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-          <a class="collapse-item" href="antrian-umum.php">POLI UMUM</a>
-          <a class="collapse-item" href="antrian-gigi.php">POLI GIGI</a>
+          <a class="collapse-item" href="<?php echo base_url('Admin/antrian_umum'); ?>">POLI UMUM</a>
+          <a class="collapse-item" href="<?php echo base_url('Admin/antrian_gigi'); ?>">POLI GIGI</a>
         </div>
       </div>
     </li>

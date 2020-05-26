@@ -14,4 +14,8 @@ class Akses extends CI_Controller
         $data['akses'] = $this->Admin_model->getAkses();
         $this->template->tampil('crud/home_akses', $data);
     }
+
+    function Profil($id_user)
+    {
+    }
 }

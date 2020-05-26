@@ -21,9 +21,9 @@ class Login extends CI_Controller
             foreach ($cek as $row) {
                 $id = $row->id_user;
                 $user = $row->username;
-                $nama = $row->nama;
                 $foto = $row->foto;
                 $akses = $row->id_akses;
+                $nama = $row->nama;
             }
             $this->session->set_userdata('session_id', $id);
             $this->session->set_userdata('session_user', $user);
@@ -37,9 +37,9 @@ class Login extends CI_Controller
             } elseif ($akses == 2) {
                 redirect('Pasien');
             } else if ($akses == 3) {
-                redirect('Dokter Umum');
+                redirect('Dokter');
             } else if ($akses == 4) {
-                redirect('Dokter Gigi');
+                redirect('Dokter');
             } else if ($akses == 5) {
                 redirect('Apoteker');
             }

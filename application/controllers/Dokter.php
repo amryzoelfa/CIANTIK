@@ -20,8 +20,13 @@ class Dokter extends CI_Controller
         $data['jumlahAGigi'] = $this->Dashboard_model->getAntrianGigi();
         $this->template->tampil('Dokter/dDashboard_view', $data);
     }
-
-    // function antrianUmum()
-    // {
-    // }
+    function antrianUmum()
+    {
+        $data['antrian'] = $this->Dokter_model->drUmum();
+        $this->template->tampil('Dokter/AntrianUmum_view', $data);
+    }
+    function antrianGigi(){
+        $data['antrian'] = $this->Dokter_model->drGigi();
+        $this->template->tampil('Dokter/AntrianGigi_view', $data);
+    }
 }

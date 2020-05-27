@@ -73,12 +73,12 @@ $getAkses = $this->session->userdata('session_akses');
       </a>
       <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-          <a class="collapse-item" href="<?php echo base_url('Master/DataAkses'); ?>">Akses</a>
+          <!-- <a class="collapse-item" href="<?php echo base_url('Master/DataAkses'); ?>">Akses</a> -->
           <a class="collapse-item" href="<?php echo base_url('Master/DataApoteker'); ?>">Apoteker</a>
           <a class="collapse-item" href="<?php echo base_url('Master/DataDokter'); ?>">Dokter</a>
           <a class="collapse-item" href="<?php echo base_url('Master/DataPasien'); ?>">Pasien</a>
-          <a class="collapse-item" href="<?php echo base_url('Master/DataPoli'); ?>">Poli</a>
-          <a class="collapse-item" href="<?php echo base_url('Master/DataStatus'); ?>">Status</a>
+          <!-- <a class="collapse-item" href="<?php echo base_url('Master/DataPoli'); ?>">Poli</a>
+          <a class="collapse-item" href="<?php echo base_url('Master/DataStatus'); ?>">Status</a> -->
         </div>
       </div>
     </li>

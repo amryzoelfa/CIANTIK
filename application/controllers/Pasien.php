@@ -26,4 +26,14 @@ class Pasien extends CI_Controller
         $data['riwayat'] = $this->Pasien_model->getRiwayat()->result();
         $this->template->tampil('Pasien/pRiwayat_view', $data);
     }
+
+    public function Antrian()
+    {
+        $data['umum'] = $this->Pasien_model->getUmum();
+        $data['gigi'] = $this->Pasien_model->getGigi();
+        $data['jumlahUmum'] = $this->Pasien_model->getJUmum();
+        $data['jumlahAUmum'] = $this->Dashboard_model->getAntrianUmum();
+        $data['jumlahAGigi'] = $this->Dashboard_model->getAntrianGigi();
+        $this->template->tampil('Pasien/pAntrian_view', $data);
+    }
 }

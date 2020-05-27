@@ -18,4 +18,8 @@ class Apoteker extends CI_Controller
         $data['jumlahKunjunganHari'] = $this->Dashboard_model->getKunjunganHari();
         $this->template->tampil('Apoteker/aDashboard_view', $data);
     }
+
+    function Antrian()
+    {
+    }
 }

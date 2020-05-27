@@ -95,13 +95,13 @@ $getAkses = $this->session->userdata('session_akses');
     <!-- Nav Item - Antrian -->
     <li class="nav-item active">
       <a class="nav-link" href="<?php if ($getAkses == 2) {
-                                  echo base_url('Antrian/Pasien');
+                                  echo base_url('Pasien/Antrian');
                                 } else if ($getAkses == 3) {
                                   echo base_url('Dokter/antrianUmum');
                                 } else if ($getAkses == 4) {
                                   echo base_url('Dokter/antrianGigi');
                                 } else if ($getAkses == 5) {
-                                  echo base_url('Antrian/Apoteker');
+                                  echo base_url('Apoteker/Antrian');
                                 } ?>">
         <i class="fas fa-sort-numeric-down"></i>
         <span>Antrian</span></a>

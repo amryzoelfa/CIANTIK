@@ -6,6 +6,7 @@ class Apoteker extends CI_Controller
         parent::__construct();
         $this->load->model('Dokter_model');
         $this->load->model('Dashboard_model');
+        $this->load->model('Apoteker_model');
         $this->load->library('template');
     }
 
@@ -21,5 +22,7 @@ class Apoteker extends CI_Controller
 
     function Antrian()
     {
+        $data['antrian'] = $this->Apoteker_model->Antrian();
+        $this->template->tampil('Apoteker/aAntrian_view', $data);
     }
 }

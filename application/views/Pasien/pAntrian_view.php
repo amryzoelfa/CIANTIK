@@ -33,7 +33,7 @@
                             <tr>
                                 <td>&nbsp;</td>
                                 <td align="center">
-                                    <h5>Jumlah Antrian : <?= $jumlahAUmum['total_umum']; ?></h5>
+                                    <h5>Jumlah Antrian : <?= $jumlahUmum['jumlah_au']; ?></h5>
                                 </td>
                                 <td>&nbsp;</td>
                             </tr>

@@ -1,0 +1,22 @@
+.col-xs-4{
+	width: 350px;
+	height: 350px;
+	/*background: #99ccff;*/
+	/*meletakkan form ke tengah*/
+	margin: 30px auto ;
+	padding: auto 40px;
+}
+
+
+.tulisan1{
+	text-align: center;
+	margin: 60px 70px ;
+	padding: 40px 30px;
+}
+
+.tulisan2{
+	text-align: center;
+	margin: 60px 70px ;
+	padding: 40px 30px;
+}
+

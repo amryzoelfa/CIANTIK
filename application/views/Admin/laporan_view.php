@@ -62,7 +62,7 @@
         <label class="col-sm-2 col-form-label">&nbsp;</label>
         <div class="col-sm-10">
             <button type="submit" class="btn btn-primary" value="">Tampilkan</button>
-            <a href="<?php echo base_url(); ?>" class="btn btn-danger">Reset Filter</a>
+            <a href="<?php echo base_url('Admin/Laporan'); ?>" class="btn btn-danger">Reset Filter</a>
         </div>
     </div>
 

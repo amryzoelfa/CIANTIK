@@ -118,7 +118,7 @@ class Admin extends CI_Controller
         $data['url_cetak'] = base_url($url_cetak);
         $data['transaksi'] = $transaksi;
         $data['option_tahun'] = $this->Laporan_model->option_tahun();
-        $this->load->view('Admin/laporan_view', $data);
+        $this->template->tampil('Admin/laporan_view', $data);
     }
 
     public function cetak()

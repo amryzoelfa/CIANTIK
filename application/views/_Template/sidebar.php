@@ -85,7 +85,7 @@ $getAkses = $this->session->userdata('session_akses');
 
     <!-- Nav Item - Charts -->
     <li class="nav-item active">
-      <a class="nav-link" href="<?php echo base_url('Admin/laporan'); ?>">
+      <a class="nav-link" href="<?php echo base_url('Admin/Laporan'); ?>">
         <i class="fas fa-fw fa-chart-area"></i>
         <span>Laporan</span></a>
     </li>

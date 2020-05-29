@@ -23,11 +23,9 @@
                             </TR>
                             <tr>
                                 <td>&nbsp;</td>
-                                <?php foreach ($umum as $data) { ?>
-                                    <td align="center">
-                                        <h2>A - <?php echo $data->no_antrian; ?></h2>
-                                    </td>
-                                <?php } ?>
+                                <td align="center">
+                                    <h2>A - <?php echo $umum['no_antrian']; ?></h2>
+                                </td>
                                 <td>&nbsp;</td>
                             </tr>
                             <tr>
@@ -72,14 +70,14 @@
                                 <td>&nbsp;</td>
 
                                 <td align="center">
-                                    <h2>B - </h2>
+                                    <h2>B - <?php echo $gigi['no_antrian']; ?></h2>
                                 </td>
                                 <td>&nbsp;</td>
                             </tr>
                             <tr>
                                 <td>&nbsp;</td>
                                 <td align="center">
-                                    <h5>Jumlah Antrian : <?= $jumlahAGigi['total_gigi']; ?></h5>
+                                    <h5>Jumlah Antrian : <?= $jumlahGigi['jumlah_ag']; ?></h5>
                                 </td>
                                 <td>&nbsp;</td>
                             </tr>

@@ -70,7 +70,7 @@
 <hr />
 
 <b><?php echo $ket; ?></b><br /><br />
-<a href="<?php echo $url_cetak; ?>" class="btn btn-success"><i class="fas fa-print"></i>>CETAK PDF</a><br /><br />
+<a href="<?php echo $url_cetak; ?>" class="btn btn-success"><i class="fas fa-print"></i>CETAK PDF</a><br /><br />
 
 
 <table class="table table-bordered">
@@ -89,19 +89,19 @@
         if (!empty($transaksi)) {
             $no = 1;
             foreach ($transaksi as $data) {
-                $tgl = date('d-m-Y', strtotime($data['tanggal_periksa'])); // Ubah format tanggal jadi dd-mm-yyyy
+                $tgl = date('d-m-Y', strtotime($data->tanggal_periksa)); // Ubah format tanggal jadi dd-mm-yyyy
                 echo "<tr>";
                 echo "<td>" . $tgl . "</td>";
-                echo "<td>" . $data['no_identitas'] . "</td>";
-                echo "<td>" . $data['nama'] . "</td>"; ?>
-                <td><?php if ($data['id_poli'] == 1) {
+                echo "<td>" . $data->no_identitas . "</td>";
+                echo "<td>" . $data->nama . "</td>"; ?>
+                <td><?php if ($data->id_poli == 1) {
                         echo "UMUM";
                     } else {
                         echo "GIGI";
                     } ?>
                 </td>
-        <?php echo "<td>" . $data['diagnosa'] . "</td>";
-                echo "<td>" . $data['resep_obat'] . "</td>";
+        <?php echo "<td>" . $data->diagnosa . "</td>";
+                echo "<td>" . $data->resep_obat . "</td>";
                 echo "</tr>";
             }
         } else { // Jika data tidak ada

@@ -1,6 +1,6 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">LAPORAN KUNJUNGAN & PERIKSA</h1>
+    <h1 class="h3 mb-0 text-gray-800">LAPORAN DATA TRANSAKSI, KUNJUNGAN & PERIKSA</h1>
 </div>
 
 <form method="get" action="">
@@ -50,11 +50,8 @@
             <select class="form-control" name="tahun">
                 <option value="">Pilih</option>
                 <?php
-                $query = "SELECT YEAR(tanggal_periksa) AS tahun FROM tb_periksa GROUP BY YEAR(tanggal_periksa)"; // Tampilkan tahun sesuai di tabel transaksi
-                $sql = mysqli_query($koneksi, $query); // Eksekusi/Jalankan query dari variabel $query
-
-                while ($data = mysqli_fetch_array($sql)) { // Ambil semua data dari hasil eksekusi $sql
-                    echo '<option value="' . $data['tahun'] . '">' . $data['tahun'] . '</option>';
+                foreach ($option_tahun as $data) { // Ambil data tahun dari model yang dikirim dari controller
+                    echo '<option value="' . $data->tahun . '">' . $data->tahun . '</option>';
                 }
                 ?>
             </select>
@@ -65,48 +62,16 @@
         <label class="col-sm-2 col-form-label">&nbsp;</label>
         <div class="col-sm-10">
             <button type="submit" class="btn btn-primary" value="">Tampilkan</button>
-            <a href="laporan.php" class="btn btn-danger">Reset Filter</a>
+            <a href="<?php echo base_url(); ?>" class="btn btn-danger">Reset Filter</a>
         </div>
     </div>
 
-    <!-- <button type="submit">Tampilkan</button>
-                        <a href="laporan.php">Reset Filter</a> -->
 </form>
 <hr />
 
-<?php
-if (isset($_GET['filter']) && !empty($_GET['filter'])) { // Cek apakah user telah memilih filter dan klik tombol tampilkan
-    $filter = $_GET['filter']; // Ambil data filder yang dipilih user
+<b><?php echo $ket; ?></b><br /><br />
+<a href="<?php echo $url_cetak; ?>" class="btn btn-success"><i class="fas fa-print"></i>>CETAK PDF</a><br /><br />
 
-    if ($filter == '1') { // Jika filter nya 1 (per tanggal)
-
-        $tgl = date('d-m-y', strtotime($_GET['tanggal']));
-
-        echo '<b>Data Kunjungan Tanggal ' . $tgl . '</b><br /><br />';
-        echo '<a href="print.php?filter=1&tanggal=' . $_GET['tanggal'] . '" class="btn btn-success"><i class="fas fa-print"></i>Cetak PDF</a><br /><br />';
-
-        $query = "SELECT * FROM tb_periksa, tb_user WHERE tb_periksa.id_user=tb_user.id_user and DATE(tanggal_periksa)='" . $_GET['tanggal'] . "'"; // Tampilkan data transaksi sesuai tanggal yang diinput oleh user pada filter
-    } else if ($filter == '2') { // Jika filter nya 2 (per bulan)
-
-        $nama_bulan = array('', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
-
-        echo '<b>Data Kunjungan Bulan ' . $nama_bulan[$_GET['bulan']] . ' ' . $_GET['tahun'] . '</b><br /><br />';
-        echo '<a href="print.php?filter=2&bulan=' . $_GET['bulan'] . '&tahun=' . $_GET['tahun'] . '" class="btn btn-success"><i class="fas fa-print"></i>Cetak PDF</a><br /><br />';
-
-        $query = "SELECT * FROM tb_periksa, tb_user WHERE tb_periksa.id_user=tb_user.id_user and MONTH(tb_periksa.tanggal_periksa)='" . $_GET['bulan'] . "' AND YEAR(tb_periksa.tanggal_periksa)='" . $_GET['tahun'] . "'"; // Tampilkan data transaksi sesuai bulan dan tahun yang diinput oleh user pada filter
-    } else { // Jika filter nya 3 (per tahun)
-        echo '<b>Data Kunjungan Tahun ' . $_GET['tahun'] . '</b><br /><br />';
-        echo '<a href="print.php?filter=3&tahun=' . $_GET['tahun'] . '" class="btn btn-success"><i class="fas fa-print"></i>Cetak PDF</a><br /><br />';
-
-        $query = "SELECT * FROM tb_periksa, tb_user WHERE tb_periksa.id_user=tb_user.id_user and YEAR(tanggal_periksa)='" . $_GET['tahun'] . "'"; // Tampilkan data transaksi sesuai tahun yang diinput oleh user pada filter
-    }
-} else { // Jika user tidak mengklik tombol tampilkan
-    echo '<b>Semua Data Kunjungan</b><br /><br />';
-    echo '<a href="print.php" class="btn btn-success"><i class="fas fa-print"></i> Cetak PDF</a><br /><br />';
-
-    $query = "SELECT * FROM tb_periksa, tb_user WHERE tb_periksa.id_user=tb_user.id_user ORDER BY tanggal_periksa"; // Tampilkan semua data transaksi diurutkan berdasarkan tanggal
-}
-?>
 
 <table class="table table-bordered">
     <thead>
@@ -121,11 +86,9 @@ if (isset($_GET['filter']) && !empty($_GET['filter'])) { // Cek apakah user tela
     </thead>
     <tbody>
         <?php
-        $sql = mysqli_query($koneksi, $query); // Eksekusi/Jalankan query dari variabel $query
-        $row = mysqli_num_rows($sql); // Ambil jumlah data dari hasil eksekusi $sql
-        if ($row > 0) { // Jika jumlah data lebih dari 0 (Berarti jika data ada)
-
-            while ($data = mysqli_fetch_array($sql)) { // Ambil semua data dari hasil eksekusi $sql
+        if (!empty($transaksi)) {
+            $no = 1;
+            foreach ($transaksi as $data) {
                 $tgl = date('d-m-Y', strtotime($data['tanggal_periksa'])); // Ubah format tanggal jadi dd-mm-yyyy
                 echo "<tr>";
                 echo "<td>" . $tgl . "</td>";
@@ -146,10 +109,5 @@ if (isset($_GET['filter']) && !empty($_GET['filter'])) { // Cek apakah user tela
         }
         ?>
     </tbody>
-    <!-- <tfoot>  
-               <tr>  
-                     <th colspan="3"> Total Pengunjung</th>
-                     <th><?php echo number_format($totalbelanja) ?> </th>
-               </tr>
-         </tfoot> -->
+
 </table>

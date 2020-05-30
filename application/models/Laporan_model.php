@@ -60,7 +60,7 @@ class Laporan_model extends CI_Model
 
     public function option_tahun()
     {
-        $this->db->select('*');
+        $this->db->select('YEAR(tanggal_periksa) AS tahun');
         $this->db->from('tb_periksa');
         $this->db->join('tb_user', 'tb_user.id_user=tb_periksa.id_user');
         $this->db->order_by('YEAR(tb_periksa.tanggal_periksa)');

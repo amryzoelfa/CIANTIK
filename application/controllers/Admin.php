@@ -159,7 +159,7 @@ class Admin extends CI_Controller
         ob_end_clean();
 
         require_once('./assets/plugin/html2pdf/html2pdf.class.php');
-        $pdf = new HTML2PDF('P', 'A4', 'en');
+        $pdf = new HTML2PDF('L', 'A4', 'en');
         $pdf->WriteHTML($html);
         $pdf->Output('Data Transaksi.pdf', 'D');
     }

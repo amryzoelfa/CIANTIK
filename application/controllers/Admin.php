@@ -44,7 +44,6 @@ class Admin extends CI_Controller
         $username = $this->input->post('username');
         $password = $this->input->post('password');
 
-
         $data = array(
             'id_akses' => $akses,
             'no_identitas' => $no_identitas,
@@ -71,11 +70,13 @@ class Admin extends CI_Controller
             redirect('Master/DataApoteker');
         }
     }
+
     public function antrian_umum()
     {
         $data['antrian'] = $this->Admin_model->getAntrianUmum();
         $this->template->tampil('Admin/antrian_umum', $data);
     }
+
     public function antrian_gigi()
     {
         $data['antrian'] = $this->Admin_model->getAntrianGigi();
@@ -153,7 +154,7 @@ class Admin extends CI_Controller
         $data['transaksi'] = $transaksi;
 
         ob_start();
-        $this->load->view('print', $data);
+        $this->load->view('Admin/print', $data);
         $html = ob_get_contents();
         ob_end_clean();
 

@@ -1,37 +1,41 @@
-    <br>
-    <h3>Data Periksa</h3>
+<h3>Data Periksa</h3>
     <br>
     <div class="row">
         <div class="col-lg-12">
-            <form action="insert-periksa.php" method="post">
-                <div class="form-group row" hidden="true">
+           <?php foreach ($periksa as $baris) {
+             ?>
+            <form method="post">
+                <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Id User</label>
                     <div class="col-sm-10">
-                        <input type="text" name="id_user" class="form-control" value="<?php echo $id_user ?>">
+                        <input type="text" name="id_user" class="form-control" value="<?php echo $baris->id_user; ?>">
                     </div>
                 </div>
-                <div class="form-group row" hidden="true">
-                    <label class="col-sm-2 col-form-label">Id User</label>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Id Poli</label>
                     <div class="col-sm-10">
-                        <input type="text" name="id_poli" class="form-control" value="<?php echo $idpoli ?>">
+                        <input type="text" name="id_poli" class="form-control" value="<?php echo $baris->id_poli; ?>">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Nama</label>
                     <div class="col-sm-10">
-                        <input type="text" disabled name="nama" class="form-control" value="<?php echo $namaa ?>">
+                        <input type="text" disabled name="nama" class="form-control" value="<?php echo $baris->nama;?>">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">No. Identitas</label>
                     <div class="col-sm-10">
-                        <input type="text" disabled name="no_identitas" class="form-control" value="<?php echo $noidentitas ?>">
+                        <input type="text" disabled name="no_identitas" class="form-control" value="<?php echo $baris->no_identitas;?>">
                     </div>
                 </div>
+            </form>
+                
+                <form action="<?php echo base_url('Dokter/updatePeriksaUmum'); ?>" method="post">
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Tanggal Periksa</label>
                     <div class="col-sm-10">
-                        <input type="date" disabled name="tanggal_periksa" class="form-control" required value="<?php echo $tanggal ?>">
+                        <input type="date" disabled name="tanggal_periksa" class="form-control" required value="<?php echo $baris->tanggal_periksa; ?>">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -86,10 +90,10 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">&nbsp;</label>
                     <div class="col-sm-10">
-                        <a href="antrian-dr.php?id_user=<?php echo $id_user ?>" class="btn btn-primary" name="periksa" value="submit">KEMBALI</a>
+                        <a href="<?php echo base_url('Dokter/antrianUmum') ?>" class="btn btn-primary" name="periksa" value="submit">KEMBALI</a>
                         <button class="btn btn-primary">SELESAI</button>
                     </div>
                 </div>
-            </form>
+            </form><?php } ?>
         </div>
     </div>

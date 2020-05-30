@@ -29,4 +29,9 @@ class Dokter extends CI_Controller
         $data['antrian'] = $this->Dokter_model->drGigi();
         $this->template->tampil('Dokter/AntrianGigi_view', $data);
     }
+     function edit($id_user){
+        $where = array('id_user'=> $id_user);
+        $data['periksa']=$this->Dokter_model->edit_data($id_user)->result();
+        $this->template->tampil('Dokter/Periksa_view', $data);
+    }
 }

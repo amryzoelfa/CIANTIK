@@ -17,6 +17,7 @@
             </thead>
             <tbody>
                 <?php
+                //var_dump($antrian);
                 if (!empty($antrian)) {
                     foreach ($antrian as $data) {
                 ?>
@@ -38,7 +39,7 @@
                                 <?php
                                 } else {
                                 ?>
-                                    <a href="data-periksa.php?id_user=<?php echo $data['id_user'] ?>" class="btn btn-primary" name="periksa" value="submit">Periksa</a>
+                                    <a href="<?php echo site_url().'Dokter/edit/'.$data->id_user; ?>" class="btn btn-primary" name="periksa" value="submit">Periksa</a>
                                 <?php
                                 }
                                 ?>

@@ -107,7 +107,7 @@
                         <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $jumlahAUmum['total_umum']; ?></div>
                     </div>
                     <div class="col-auto">
-                        <i class="fas fa-user-nurse fa-2x text-gray-300"></i>
+                        <i class="fas fa-stethoscope fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>
@@ -124,7 +124,7 @@
                         <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $jumlahAGigi['total_gigi']; ?></div>
                     </div>
                     <div class="col-auto">
-                        <i class="fas fa-users fa-2x text-gray-300"></i>
+                        <i class="fas fa-tooth fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>

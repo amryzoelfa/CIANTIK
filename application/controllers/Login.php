@@ -31,19 +31,24 @@ class Login extends CI_Controller
             $this->session->set_userdata('session_akses', $akses);
             $this->session->set_userdata('session_nama', $nama);
             // redirect('Admin');
-            $this->session->set_flashdata('massage', '<div class="alert alert-danger" role="alert">Selamat Sudah Login</div>' . $user);
             if ($akses == 1) {
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Selamat, ' . $nama . ' Berhasil Login sebagai Admin</div>');
                 redirect('Admin');
             } elseif ($akses == 2) {
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Selamat, ' . $nama . ' Berhasil Login sebagai Pasien</div>');
                 redirect('Pasien');
             } else if ($akses == 3) {
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Selamat, ' . $nama . ' Berhasil Login sebagai Dokter Umum</div>');
                 redirect('Dokter');
             } else if ($akses == 4) {
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Selamat, ' . $nama . ' Berhasil Login sebagai Dokter Gigi</div>');
                 redirect('Dokter');
             } else if ($akses == 5) {
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Selamat, ' . $nama . ' Berhasil Login sebagai Apoteker</div>');
                 redirect('Apoteker');
             }
         } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Maaf Anda Gagal Login!</div>');
             $this->load->view('auth/login_view');
         }
     }

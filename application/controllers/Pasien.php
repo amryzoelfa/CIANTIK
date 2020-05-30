@@ -12,12 +12,9 @@ class Pasien extends CI_Controller
 
     function index()
     {
-        $data['user'] = $this->Admin_model->getAll()->result();
-        $data['jumlahUser'] = $this->Dashboard_model->getJumlahUser();
-        $data['jumlahPasien'] = $this->Dashboard_model->getJumlahPasien();
         $data['jumlahDokter'] = $this->Dashboard_model->getJumlahDokter();
-        $data['jumlahApoteker'] = $this->Dashboard_model->getJumlahApoteker();
-        $data['jumlahKunjunganHari'] = $this->Dashboard_model->getKunjunganHari();
+        $data['jumlahAUmum'] = $this->Dashboard_model->getAntrianUmum();
+        $data['jumlahAGigi'] = $this->Dashboard_model->getAntrianGigi();
         $this->template->tampil('Pasien/pDashboard_view', $data);
     }
 

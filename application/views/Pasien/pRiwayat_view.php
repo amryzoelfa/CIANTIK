@@ -9,8 +9,10 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Tanggal</th>
+                        <th>Tanggal Periksa</th>
                         <th>Poli</th>
+                        <th>Tensi Darah</th>
+                        <th>Gejala</th>
                         <th>Diagnosa</th>
                         <th>Tindakan</th>
                         <th>Obat</th>
@@ -29,6 +31,8 @@
                                 } else {
                                     echo "GIGI";
                                 }; ?></td>
+                            <td><?php echo $data->tensi_darah; ?></td>
+                            <td><?php echo $data->gejala; ?></td>
                             <td><?php echo $data->diagnosa; ?></td>
                             <td><?php echo $data->tindakan; ?></td>
                             <td><?php echo $data->resep_obat; ?></td>

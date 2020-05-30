@@ -21,7 +21,6 @@
     });
   </script>
 
-  <script src="<?php echo base_url('assets/plugin/jquery.min.js') ?>"></script> <!-- Load file jquery -->
   <script src="<?php echo base_url('assets/plugin/jquery-ui/jquery-ui.min.js') ?>"></script>
   <script>
     $(document).ready(function() { // Ketika halaman selesai di load

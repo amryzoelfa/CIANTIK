@@ -37,6 +37,8 @@
                 <th>ID</th>
                 <th>Nama</th>
                 <th>Poli</th>
+                <th>Tensi Darah</th>
+                <th>Gejala</th>
                 <th>Diagnosa</th>
                 <th>Obat</th>
             </tr>
@@ -57,7 +59,9 @@
                             echo "GIGI";
                         } ?>
                     </td>
-            <?php echo "<td>" . $data->diagnosa . "</td>";
+            <?php echo "<td>" . $data->tensi_darah . "</td>";
+                    echo "<td>" . $data->gejala . "</td>";
+                    echo "<td>" . $data->diagnosa . "</td>";
                     echo "<td>" . $data->resep_obat . "</td>";
                     echo "</tr>";
                 }

@@ -24,7 +24,9 @@
                             <tr>
                                 <td>&nbsp;</td>
                                 <td align="center">
-                                    <h2>A - <?php echo $umum['no_antrian']; ?></h2>
+                                    <h2>A - <?php if (!empty($umum)) {
+                                                echo $umum['no_antrian'];
+                                            } ?></h2>
                                 </td>
                                 <td>&nbsp;</td>
                             </tr>
@@ -70,7 +72,9 @@
                                 <td>&nbsp;</td>
 
                                 <td align="center">
-                                    <h2>B - <?php echo $gigi['no_antrian']; ?></h2>
+                                    <h2>B - <?php if (!empty($gigi)) {
+                                                echo  $gigi['no_antrian'];
+                                            } ?></h2>
                                 </td>
                                 <td>&nbsp;</td>
                             </tr>

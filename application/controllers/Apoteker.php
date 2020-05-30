@@ -23,6 +23,23 @@ class Apoteker extends CI_Controller
     function Antrian()
     {
         $data['antrian'] = $this->Apoteker_model->Antrian();
+        // var_dump($data);die();
         $this->template->tampil('Apoteker/aAntrian_view', $data);
     }
+
+    function Riwayat()
+    {
+        $whereantrian = $this->uri->segment(3);
+        $poli = $this->uri->segment(4);
+
+        if ($poli == "UMUM") {
+            $wherepoli = 1;
+        } else if ($poli == "GIGI") {
+            $wherepoli = 2;
+        }
+
+        $data['riwayat'] = $this->Apoteker_model->Riwayat($whereantrian, $wherepoli);
+        $this->template->tampil('Apoteker/aRiwayatp_view', $data);
+    }
+
 }

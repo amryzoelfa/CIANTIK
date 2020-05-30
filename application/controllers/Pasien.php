@@ -34,4 +34,18 @@ class Pasien extends CI_Controller
         $data['jumlahAGigi'] = $this->Dashboard_model->getAntrianGigi();
         $this->template->tampil('Pasien/pAntrian_view', $data);
     }
+
+    public function CetakUmum()
+    {
+        $data['umum'] = $this->Pasien_model->getCetak()->result_array();
+        // var_dump($data);die();
+        $this->template->tampil('Pasien/pCetakUmum_view', $data);
+    }
+
+    public function CetakGigi()
+    {
+        $data['gigi'] = $this->Pasien_model->getCetak()->result_array();
+        // var_dump($data);die();
+        $this->template->tampil('Pasien/pCetakGigi_view', $data);
+    }
 }

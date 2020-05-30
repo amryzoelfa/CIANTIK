@@ -36,4 +36,10 @@ class Pasien_model extends CI_Model
         $query = "SELECT COUNT(tb_periksa.id_user) AS jumlah_ag FROM tb_periksa WHERE id_poli = 2 AND id_status_periksa = 1 AND tanggal_periksa = CURRENT_DATE()";
         return $this->db->query($query);
     }
+
+    public function getCetak()
+    {
+        $query = "SELECT MAX(tb_antrian.no_antrian) as ambil, tanggal FROM tb_antrian WHERE id_poli = 1 AND tanggal=CURRENT_DATE()";
+        return $this->db->query($query);
+    }
 }

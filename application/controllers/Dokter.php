@@ -29,9 +29,37 @@ class Dokter extends CI_Controller
         $data['antrian'] = $this->Dokter_model->drGigi();
         $this->template->tampil('Dokter/AntrianGigi_view', $data);
     }
-     function edit($id_user){
+     function updatePeriksaUmum(){
+        $id_user = $this->input->post('id_user');
+        $where = array('id_user'=>$id_user);
+        $this->Dokter_model->update_data_umum($id_user);
+        redirect('Dokter/antrianUmum');
+    }
+    function edit_umum($id_user){
+        $data['periksa']=$this->Dokter_model->edit_data_umum($id_user)->result();
+        $this->template->tampil('Dokter/Periksa_view_Umum', $data);
+        $this->Dokter_model->proses_umum($id_user);
+    }
+    function updatePeriksaGigi(){
+        $id_user = $this->input->post('id_user');
+        $where = array('id_user'=>$id_user);
+        $this->Dokter_model->update_data_gigi($id_user); 
+        redirect('Dokter/antrianGigi');
+    }
+    function edit_gigi($id_user){
+        $data['periksa']=$this->Dokter_model->edit_data_gigi($id_user)->result();
+        $this->template->tampil('Dokter/Periksa_view_Gigi', $data);
+        $this->Dokter_model->proses_gigi($id_user);
+    }
+    function back_umum(){
+        $id_user = $this->input->post('id_user');
+        $where = array('id_user'=>$id_user);
+        $this->Dokter_model->kembali_umum($id_user);
+        redirect('Dokter/antrianUmum');
+    }
+     function back_gigi(){
         $where = array('id_user'=> $id_user);
-        $data['periksa']=$this->Dokter_model->edit_data($id_user)->result();
-        $this->template->tampil('Dokter/Periksa_view', $data);
+        $this->Dokter_model->kembali_gigi($id_user);
+        redirect('Dokter/antrianGigi');
     }
 }

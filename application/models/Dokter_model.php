@@ -13,8 +13,87 @@ class Dokter_model extends CI_Model
 		$query2 = "SELECT tb_antrian.no_antrian, tb_antrian.tanggal, tb_user.no_identitas, tb_user.nama, tb_periksa.id_status_periksa, tb_periksa.id_status_obat, tb_periksa.id_user FROM tb_antrian , tb_user , tb_periksa WHERE tb_antrian.id_user = tb_user.id_user AND tb_user.id_user = tb_periksa.id_user AND tb_periksa.tanggal_periksa = CURRENT_DATE() AND tb_periksa.id_poli = 2 AND tb_antrian.id_poli=2 AND tb_antrian.tanggal = CURRENT_DATE() GROUP BY tb_antrian.id_antrian";
 		return $this->db->query($query2)->row_array();
 	}
-	function edit_data($where){
-		$query = "SELECT * FROM tb_periksa JOIN tb_user ON tb_user.id_user = tb_periksa.id_user WHERE tb_periksa.tanggal_periksa = CURRENT_DATE() and tb_periksa.id_poli=1 and tb_periksa.id_user = '$where' GROUP BY tb_periksa.id_user";
+	function edit_data_umum($where){
+		$query = "SELECT * FROM tb_periksa JOIN tb_user ON tb_user.id_user = tb_periksa.id_user WHERE tb_periksa.tanggal = CURRENT_DATE() and tb_periksa.id_poli=1 and tb_periksa.id_status_periksa = 1 and tb_periksa.id_user = '$where' GROUP BY tb_periksa.id_user";
 		return $this->db->query($query);		
+	}
+	function edit_data_gigi($where){
+		$query = "SELECT * FROM tb_periksa JOIN tb_user ON tb_user.id_user = tb_periksa.id_user WHERE tb_periksa.tanggal = CURRENT_DATE() and tb_periksa.id_poli=2 and tb_periksa.id_status_periksa = 1 and tb_periksa.id_user = '$where' GROUP BY tb_periksa.id_user";
+		return $this->db->query($query);		
+	}
+	function update_data_umum($id_user){
+		$tanggal = date('Y-m-d');
+		$data = [
+			'tensi_darah' => $this->input->post('tensi_darah'),
+            'riwayat_penyakit' => $this->input->post('riwayat_penyakit'),
+            'gejala' => $this->input->post('gejala'),
+            'diagnosa' => $this->input->post('diagnosa'),
+            'tindakan' => $this->input->post('tindakan'),
+            'resep_obat' => $this->input->post('obat'),
+            'keterangan' => $this->input->post('keterangan'),
+            'id_status_periksa' => 2,
+		];
+		$this->db->where('id_user',$id_user);
+		$this->db->where('id_poli',1);
+		$this->db->where('tanggal',$tanggal);
+		$this->db->update('tb_periksa',$data);
+	}
+	function proses_umum($id_user){
+		$tanggal = date('Y-m-d');
+		$ubah = [
+			'id_status_periksa' => 3,
+		];
+		$this->db->where('id_user',$id_user);
+		$this->db->where('id_poli',1);
+		$this->db->where('tanggal',$tanggal);
+		$this->db->update('tb_periksa',$ubah);
+	}
+
+	function update_data_gigi($id_user){
+		$tanggal = date('Y-m-d');
+		$data = [
+			'tensi_darah' => $this->input->post('tensi_darah'),
+            'riwayat_penyakit' => $this->input->post('riwayat_penyakit'),
+            'gejala' => $this->input->post('gejala'),
+            'diagnosa' => $this->input->post('diagnosa'),
+            'tindakan' => $this->input->post('tindakan'),
+            'resep_obat' => $this->input->post('obat'),
+            'keterangan' => $this->input->post('keterangan'),
+            'id_status_periksa' => 2,
+		];
+		$this->db->where('id_user',$id_user);
+		$this->db->where('id_poli',2);
+		$this->db->where('tanggal',$tanggal);
+		$this->db->update('tb_periksa',$data);
+	}
+	function proses_gigi($id_user){
+		$tanggal = date('Y-m-d');
+		$ubah = [
+			'id_status_periksa' => 3,
+		];
+		$this->db->where('id_user',$id_user);
+		$this->db->where('id_poli',2);
+		$this->db->where('tanggal',$tanggal);
+		$this->db->update('tb_periksa',$ubah);
+	}
+	function kembali_umum($id_user){
+		$tanggal = date('Y-m-d');
+		$ubah = [
+			'id_status_periksa' => 1,
+		];
+		$this->db->where('id_user',$id_user);
+		$this->db->where('id_poli',1);
+		$this->db->where('tanggal',$tanggal);
+		$this->db->update('tb_periksa',$ubah);
+	}
+	function kembali_gigi($id_user){
+		$tanggal = date('Y-m-d');
+		$ubah = [
+			'id_status_periksa' => 1,
+		];
+		$this->db->where('id_user',$id_user);
+		$this->db->where('id_poli',2);
+		$this->db->where('tanggal',$tanggal);
+		$this->db->update('tb_periksa',$ubah);
 	}
 }

@@ -3,15 +3,16 @@
     <div class="row">
         <div class="col-lg-12">
            <?php foreach ($periksa as $baris) {
+            $tgl = date('d-m-Y', strtotime($baris->tanggal));
              ?>
-            <form method="post">
-                <div class="form-group row">
+            <form action="<?php echo base_url('Dokter/updatePeriksaGigi');?>" method="post">
+                <div class="form-group row" hidden="true">
                     <label class="col-sm-2 col-form-label">Id User</label>
                     <div class="col-sm-10">
                         <input type="text" name="id_user" class="form-control" value="<?php echo $baris->id_user; ?>">
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group row" hidden="true">
                     <label class="col-sm-2 col-form-label">Id Poli</label>
                     <div class="col-sm-10">
                         <input type="text" name="id_poli" class="form-control" value="<?php echo $baris->id_poli; ?>">
@@ -29,13 +30,11 @@
                         <input type="text" disabled name="no_identitas" class="form-control" value="<?php echo $baris->no_identitas;?>">
                     </div>
                 </div>
-            </form>
-                
-                <form action="<?php echo base_url('Dokter/updatePeriksaUmum'); ?>" method="post">
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Tanggal Periksa</label>
                     <div class="col-sm-10">
-                        <input type="date" disabled name="tanggal_periksa" class="form-control" required value="<?php echo $baris->tanggal_periksa; ?>">
+                        <input type="date" disabled name="tanggal" class="form-control" required 
+                            value="<?php echo $tgl; ?>">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -68,11 +67,8 @@
                         <input type="text" name="tindakan" class="form-control" size="4" required>
                     </div>
                 </div>
-
-
                 <br>
                 <hr>
-
                 <h3>Resep Obat</h3>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Obat</label>
@@ -86,14 +82,13 @@
                         <textarea type="text" name="keterangan" class="form-control" required></textarea>
                     </div>
                 </div>
-
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">&nbsp;</label>
                     <div class="col-sm-10">
-                        <a href="<?php echo base_url('Dokter/antrianUmum') ?>" class="btn btn-primary" name="periksa" value="submit">KEMBALI</a>
+                        <a href="<?php echo base_url('Dokter/back_gigi'); ?>" class="btn btn-primary" name="periksa" value="submit">KEMBALI</a>
                         <button class="btn btn-primary">SELESAI</button>
                     </div>
                 </div>
-            </form><?php } ?>
+            </form> <?php } ?>
         </div>
     </div>

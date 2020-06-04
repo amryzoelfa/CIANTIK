@@ -28,15 +28,22 @@ class Akses extends CI_Controller
         $ubah_foto = $this->input->post('ubah_foto');
 
         if($ubah_foto){
+            $foto=$this->_uploadImage('foto');
+
+            if($foto==''){
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Tidak ada foto terpilih. Foto maximal berukuran 2 mb<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                redirect('akses/profil');
+            }
+
             $data=array(
                 'no_identitas' => $this->input->post('no_identitas'),
                 'nama' => $this->input->post('nama'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
                 'tanggal_lahir' => $this->input->post('tanggal_lahir'),
-                'jenis_kelamin' => $this->input->post('jenis_kelamin'),
+                'jenis_kelamin' => $this->input->post('jk'),
                 'alamat' => $this->input->post('alamat'),
                 'no_hp' => $this->input->post('no_hp'),
-                'foto' => $this->input->post('foto')
+                'foto' => $foto 
             );
         }else{
             $data=array(
@@ -44,7 +51,7 @@ class Akses extends CI_Controller
                 'nama' => $this->input->post('nama'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
                 'tanggal_lahir' => $this->input->post('tanggal_lahir'),
-                'jenis_kelamin' => $this->input->post('jenis_kelamin'),
+                'jenis_kelamin' => $this->input->post('jk'),
                 'alamat' => $this->input->post('alamat'),
                 'no_hp' => $this->input->post('no_hp')
             );
@@ -89,4 +96,23 @@ class Akses extends CI_Controller
         }
     }
 
+
+
+    private function _uploadImage($name){
+        // konfigurasi
+        $config['upload_path']          = './assets/img/';
+        $config['allowed_types']        = 'gif|jpg|jpeg|png';
+        $config['encrypt_name']         = TRUE; //Enkripsi nama yang terupload
+        $config['overwrite']			= TRUE;
+        $config['max_size']             = 2048; // 2MB
+        $config['file_ext_tolower']     = TRUE;
+        $this->load->library('upload', $config);        
+        // bila berhasil
+        if ($this->upload->do_upload($name)) {            
+            // ambil nama file foto
+            return $this->upload->data("file_name");
+        }else{
+            return "";
+        }
+    }
 }

@@ -39,7 +39,7 @@
                                 <?php
                                 } else {
                                 ?>
-                                    <a href="<?php echo site_url().'Dokter/edit/'.$data->id_user; ?>" class="btn btn-primary" name="periksa" value="submit">Periksa</a>
+                                    <a href="<?php echo site_url().'Dokter/edit_gigi/'.$data->id_user; ?>" class="btn btn-primary" name="periksa" value="submit">Periksa</a>
                                 <?php
                                 }
                                 ?>

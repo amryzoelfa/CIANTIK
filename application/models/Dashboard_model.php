@@ -44,13 +44,7 @@ class Dashboard_model extends CI_Model
 
     public function getKunjunganHari()
     {
-        $query = "SELECT COUNT(*) as totalkh FROM tb_antrian WHERE tanggal=CURRENT_DATE()";
-        return $this->db->query($query)->row_array();
-    }
-
-    public function getTotalAntrian()
-    {
-        $query = "SELECT COUNT(*) as total_antrian FROM tb_antrian WHERE tanggal=CURRENT_DATE()";
+        $query = "SELECT COUNT(*) as totalkh FROM tb_periksa WHERE tanggal=CURRENT_DATE()";
         return $this->db->query($query)->row_array();
     }
 
@@ -62,13 +56,13 @@ class Dashboard_model extends CI_Model
 
     public function getAntrianUmum()
     {
-        $query = "SELECT COUNT(*) as total_umum FROM tb_antrian WHERE tanggal=CURRENT_DATE() AND id_poli=1";
+        $query = "SELECT COUNT(*) as total_umum FROM tb_periksa WHERE tanggal=CURRENT_DATE() AND id_poli=1";
         return $this->db->query($query)->row_array();
     }
 
     public function getAntrianGigi()
     {
-        $query = "SELECT COUNT(*) as total_gigi FROM tb_antrian WHERE tanggal=CURRENT_DATE() AND id_poli=2";
+        $query = "SELECT COUNT(*) as total_gigi FROM tb_periksa WHERE tanggal=CURRENT_DATE() AND id_poli=2";
         return $this->db->query($query)->row_array();
     }
 }

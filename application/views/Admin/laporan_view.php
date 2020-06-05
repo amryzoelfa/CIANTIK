@@ -91,7 +91,7 @@
         if (!empty($transaksi)) {
             $no = 1;
             foreach ($transaksi as $data) {
-                $tgl = date('d-m-Y', strtotime($data->tanggal_periksa)); // Ubah format tanggal jadi dd-mm-yyyy
+                $tgl = date('d-m-Y', strtotime($data->tanggal)); // Ubah format tanggal jadi dd-mm-yyyy
                 echo "<tr>";
                 echo "<td>" . $tgl . "</td>";
                 echo "<td>" . $data->no_identitas . "</td>";

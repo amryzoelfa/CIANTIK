@@ -28,6 +28,7 @@
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-danger shadow h-100 py-2">
             <div class="card-body">
+                <a href="<?= base_url('Master/DataPasien') ?>" class="stretched-link"></a>
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-sm font-weight-bold text-danger text-uppercase mb-1">Pasien</div>
@@ -46,6 +47,7 @@
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-warning shadow h-100 py-2">
             <div class="card-body">
+                <a href="<?= base_url('Master/DataDokter') ?>" class="stretched-link"></a>
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-sm font-weight-bold text-warning text-uppercase mb-1">Dokter</div>
@@ -63,6 +65,7 @@
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-success shadow h-100 py-2">
             <div class="card-body">
+                <a href="<?= base_url('Master/DataApoteker') ?>" class="stretched-link"></a>
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-sm font-weight-bold text-success text-uppercase mb-1">Apoteker</div>
@@ -101,6 +104,7 @@
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-primary shadow h-100 py-2">
             <div class="card-body">
+                <a href="<?= base_url('Admin/antrian_umum') ?>" class="stretched-link"></a>
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-sm font-weight-bold text-primary text-uppercase mb-1">Jumlah Antrian Umum</div>
@@ -118,6 +122,7 @@
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-success shadow h-100 py-2">
             <div class="card-body">
+                <a href="<?= base_url('Admin/antrian_gigi') ?>" class="stretched-link"></a>
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-sm font-weight-bold text-success text-uppercase mb-1">Jumlah Antrian Gigi</div>

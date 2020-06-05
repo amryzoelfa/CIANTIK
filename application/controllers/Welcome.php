@@ -27,6 +27,16 @@ class Welcome extends CI_Controller
 	public function index()
 	{
 		// $this->load->view('welcome_message');
-		$this->load->view('auth/login_view');
+		$this->load->view('Home/index');
+	}
+
+	public function Kontak()
+	{
+		$this->load->view('Home/kontak');
+	}
+
+	public function Tentang()
+	{
+		$this->load->view('Home/tentang');
 	}
 }

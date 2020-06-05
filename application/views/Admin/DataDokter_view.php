@@ -38,7 +38,11 @@
                         <tr>
                             <td><?php echo $data->no_identitas; ?></td>
                             <td><?php echo $data->nama; ?></td>
-                            <td><img src="<?php echo base_url('assets/img/') . $data->foto; ?>" width="80" height="80"></td>
+                            <td><img src="<?php if ($data->foto == NULL) {
+                                                echo base_url('assets/img/noimage.png');
+                                            } else {
+                                                echo base_url('assets/img/') . $data->foto;
+                                            } ?>" width="80" height="80"></td>
                             <td><?php if ($data->jenis_kelamin == 'L') {
                                     echo "Laki-laki";
                                 } else {
@@ -50,7 +54,7 @@
                             <td>
                                 <?php
                                 echo '<a href="' . base_url('Master/edit/' . $data->id_user) . '" class="btn btn-warning"><i class="fas fa-edit"></i></a>';
-                                echo "||";
+                                // echo "||";
                                 echo '<a href="' . base_url('Master/hapus/' . $data->id_user) . '"  class="btn btn-danger"><i class="fa fa-trash"></i></a>';
                                 ?>
                             </td>

@@ -25,7 +25,7 @@
                     ?>
                         <tr>
                             <td><?php echo $no; ?></td>
-                            <td><?php echo date("d-m-Y", strtotime($data->tanggal_periksa)); ?></td>
+                            <td><?php echo date("d-m-Y", strtotime($data->tanggal)); ?></td>
                             <td><?php if ($data->id_poli == 1) {
                                     echo "UMUM";
                                 } else {

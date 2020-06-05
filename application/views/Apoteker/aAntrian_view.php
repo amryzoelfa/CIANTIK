@@ -14,6 +14,7 @@
 
                       <th>POLI</th>
                        <th>Status Periksa</th>
+                       <th>Status Obat</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -28,13 +29,29 @@
                           <td><?php echo $data->nama; ?></td>
                           <td><?php echo $data->ket_poli; ?></td>
                           <td><?php echo $data->ket_status; ?></td>
-                          <td>
-                            <!-- <a href="apoteker-riwayat.php?id_antrian=<?php //echo $data->no_identitas; ?>" name="lihat" style=’text-decoration:none’ onclick=\”return\”> Lihat </a> -->
-                            <a href="<?php echo site_url().'Apoteker/Riwayat/'.$data->no_identitas.'/'.$data->ket_poli; ?>" name="lihat" style=’text-decoration:none’ onclick=\”return\”> Lihat </a>
+                          <td><?php if ($data->id_status_obat == 1) {
+                                    echo "BELUM";
+                                } else {
+                                    echo "SUDAH";
+                                } ?></td>
+                            <td>
+                               <?php
+                                if ($data->id_status_obat == 2) {
+                                ?>
+                                    <button class="btn btn-primary" disabled="true">Lihat</button>
+                                <?php
+                                } else {
+                                ?>
+                               <a href="<?php echo site_url().'Apoteker/Riwayat/'.$data->no_identitas.'/'.$data->ket_poli; ?>" name="lihat" style=’text-decoration:none’ onclick=\”return\”> Lihat </a>
+                                <?php
+                                }
+                                ?>
+                            </td>
                         </tr>
-                      <?php }
-                    } ?>
-                  </tbody>
+                <?php }
+                } ?>
+            </tbody>
+                          
 
                 </table>
               </div>

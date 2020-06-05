@@ -21,8 +21,7 @@
  				<div class="col-sm-10">
  					<input type="text" disabled name="jk" class="form-control" size="4" value="<?php if ($riwayat[0]['jenis_kelamin'] =='L'){
  						echo "Laki-Laki";}else{
-
- 						} ;?>" required>
+ 						echo "Perempuan";} ?>" required>
  					</div>
  				</div>
  				<div class="form-group row">

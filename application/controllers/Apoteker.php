@@ -42,4 +42,9 @@ class Apoteker extends CI_Controller
         $this->template->tampil('Apoteker/aRiwayatp_view', $data);
     }
 
+     function update_status($id_user){
+        $data['obat']=$this->Apoteker_model->update_status_obat($id_user)->result();
+        $this->template->tampil('Apoteker/Antrian', $data);
+    }
+
 }

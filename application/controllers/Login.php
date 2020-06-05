@@ -15,7 +15,7 @@ class Login extends CI_Controller
     public function cek_log()
     {
         $username = $this->input->post('txt_user');
-        $password = $this->input->post('txt_pass');
+        $password =  md5($this->input->post('txt_pass'));
         $cek = $this->Login_model->login($username, $password, 'tb_user')->result();
         if ($cek != FALSE) {
             foreach ($cek as $row) {
@@ -48,7 +48,7 @@ class Login extends CI_Controller
                 redirect('Apoteker');
             }
         } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Maaf Anda Gagal Login!</div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal! Mohon Periksa kembali.</div>');
             $this->load->view('auth/login_view');
         }
     }

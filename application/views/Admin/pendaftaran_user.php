@@ -5,7 +5,7 @@
 
 <form class="user" action="<?php echo base_url() . 'Admin/input'; ?>" method="post">
     <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Akses*</label>
+        <label class="col-sm-2 col-form-label">Akses<font color="red">*</font></label>
         <div class="col-sm-10">
             <select class="form-control" id="akses" name="akses">
                 <?php foreach ($akses as $baris) { ?>
@@ -14,18 +14,21 @@
             </select>
         </div>
     </div>
+
     <div class="form-group row">
-        <label class="col-sm-2 col-form-label">No ID**</label>
+        <label class="col-sm-2 col-form-label">No ID<font color="red">**</font></label>
         <div class="col-sm-10">
             <input type="text" name="no_identitas" placeholder="Nomor Identitas" size="4" class="form-control" required>
         </div>
     </div>
+
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Nama Lengkap</label>
         <div class="col-sm-10">
             <input type="text" name="nama" placeholder="Nama Lengkap" size="4" class="form-control" required>
         </div>
     </div>
+
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Jenis Kelamin</label>
         <div class="col-sm-10">
@@ -70,6 +73,14 @@
             <input type="text" name="pekerjaan" placeholder="Pekerjaan" size="4" class="form-control" required>
         </div>
     </div>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+            <input type="text" name="email" placeholder="email" size="4" class="form-control" required>
+        </div>
+    </div>
+
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Username</label>
         <div class="col-sm-10">

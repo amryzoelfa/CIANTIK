@@ -3,14 +3,6 @@
         <input type="hidden" name="id_user" value="<?php echo $data->id_user; ?>">
         <input type="hidden" name="akses" value="<?php echo $data->id_akses; ?>">
 
-        <!-- <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Foto Profil</label>
-        <div class="col-sm-10">
-            <input type="checkbox" name="ubah_foto" value="true"> Ceklis jika ingin mengubah foto<br>
-            <input type="file" name="foto" accept="image/*" value="" class="form-control-file" size="4">
-        </div>
-    </div> -->
-
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">No. Identitas</label>
             <div class="col-sm-10">
@@ -53,14 +45,6 @@
             </div>
         </div>
 
-        <!-- <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Tanggal Lahir</label>
-            <div class="col-sm-10">
-                <input type="date" name="tanggal_lahir" value="<?php //echo $data->tanggal_lahir; 
-                                                                ?>" class="form-control" required>
-            </div>
-        </div> -->
-
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Nomor Handphone</label>
             <div class="col-sm-10">
@@ -79,6 +63,13 @@
             <label class="col-sm-2 col-form-label">Pekerjaan</label>
             <div class="col-sm-10">
                 <input type="text" name="pekerjaan" placeholder="Pekerjaan" value="<?php echo $data->pekerjaan; ?>" class="form-control" required>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+                <input type="text" name="email" placeholder="Email@antik.com" value="<?php echo $data->email; ?>" class="form-control" required>
             </div>
         </div>
 

@@ -39,7 +39,7 @@
             <br>
             <?php echo $this->session->flashdata('message'); ?>
             <input class="btn btn-lg btn-primary btn-block" type="submit" name="btn_log" value="LOGIN">
-            <a href="index.php" class="btn btn-lg btn-danger btn-block" name="kembali">Kembali</a>
+            <a href="<?php echo base_url('Welcome'); ?>" class="btn btn-lg btn-danger btn-block" name="kembali">Kembali</a>
             <!-- <button class="btn btn-lg btn-danger btn-block" type="submit" name="kembali">Kembali</button> -->
             <br>
 

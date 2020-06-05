@@ -38,9 +38,10 @@ class Admin extends CI_Controller
         $jenis_kelamin = $this->input->post('jk');
         $tempat_lahir = $this->input->post('tempat_lahir');
         $tanggal_lahir = $this->input->post('tanggal_lahir');
-        $no_hp = $this->input->post('no_hp');
         $alamat = $this->input->post('alamat');
         $pekerjaan = $this->input->post('pekerjaan');
+        $no_hp = $this->input->post('no_hp');
+        $email = $this->input->post('email');
         $username = $this->input->post('username');
         $password = $this->input->post('password');
 
@@ -51,12 +52,12 @@ class Admin extends CI_Controller
             'jenis_kelamin' => $jenis_kelamin,
             'tempat_lahir' => $tempat_lahir,
             'tanggal_lahir' => $tanggal_lahir,
-            'no_hp' => $no_hp,
             'alamat' => $alamat,
             'pekerjaan' => $pekerjaan,
+            'no_hp' => $no_hp,
+            'email' => $email,
             'username' => $username,
-            'password' => $password
-
+            'password' => md5($password)
         );
         $this->Admin_model->input_data($data, 'tb_user');
         // redirect('Admin/pendaftaran_user');

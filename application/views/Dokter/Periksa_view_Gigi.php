@@ -33,7 +33,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Tanggal Periksa</label>
                     <div class="col-sm-10">
-                        <input type="date" disabled name="tanggal" class="form-control" required 
+                        <input type="text" disabled name="tanggal" class="form-control" required 
                             value="<?php echo $tgl; ?>">
                     </div>
                 </div>

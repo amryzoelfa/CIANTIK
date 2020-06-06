@@ -40,11 +40,6 @@ class Apoteker extends CI_Controller
 
         $data['riwayat'] = $this->Apoteker_model->Riwayat($whereantrian, $wherepoli);
         $this->template->tampil('Apoteker/aRiwayatp_view', $data);
+        $this->Apoteker_model->update_status_obat($whereantrian,$wherepoli);
     }
-
-     function update_status($id_user){
-        $data['obat']=$this->Apoteker_model->update_status_obat($id_user)->result();
-        $this->template->tampil('Apoteker/Antrian', $data);
-    }
-
 }

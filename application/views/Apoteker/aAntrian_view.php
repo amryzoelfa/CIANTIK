@@ -29,7 +29,7 @@
                           <td><?php echo $data->nama; ?></td>
                           <td><?php echo $data->ket_poli; ?></td>
                           <td><?php echo $data->ket_status; ?></td>
-                          <td><?php if ($data->id_status_obat == 1) {
+                          <td><?php if($data->id_status_obat == 1) {
                                     echo "BELUM";
                                 } else {
                                     echo "SUDAH";
@@ -42,7 +42,7 @@
                                 <?php
                                 } else {
                                 ?>
-                               <a href="<?php echo site_url().'Apoteker/Riwayat/'.$data->no_identitas.'/'.$data->ket_poli; ?>" name="lihat" style=’text-decoration:none’ onclick=\”return\”> Lihat </a>
+                               <a href="<?php echo site_url().'Apoteker/Riwayat/'.$data->id_user.'/'.$data->ket_poli; ?>" name="lihat" style=’text-decoration:none’ onclick=\”return\”> Lihat </a>
                                 <?php
                                 }
                                 ?>

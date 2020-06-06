@@ -42,6 +42,7 @@ class Master extends CI_Controller
         $no_hp = $this->input->post('no_hp');
         $alamat = $this->input->post('alamat');
         $pekerjaan = $this->input->post('pekerjaan');
+        $email = $this->input->post('email');
         $username = $this->input->post('username');
         $password = $this->input->post('password');
 
@@ -56,8 +57,9 @@ class Master extends CI_Controller
             'no_hp' => $no_hp,
             'alamat' => $alamat,
             'pekerjaan' => $pekerjaan,
+            'email' => $email,
             'username' => $username,
-            'password' => $password
+            'password' => md5($password)
         );
         $where = array('id_user' => $id_user);
         $this->Master_model->update_data($where, $data, 'tb_user');

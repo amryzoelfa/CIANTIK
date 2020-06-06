@@ -24,18 +24,18 @@ class Akses extends CI_Controller
 
     function updateProfile()
     {
-        $id_user=$this->input->post('id');
+        $id_user = $this->input->post('id');
         $ubah_foto = $this->input->post('ubah_foto');
 
-        if($ubah_foto){
-            $foto=$this->_uploadImage('foto');
+        if ($ubah_foto) {
+            $foto = $this->_uploadImage('foto');
 
-            if($foto==''){
+            if ($foto == '') {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Tidak ada foto terpilih. Foto maximal berukuran 2 mb<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
                 redirect('akses/profil');
             }
 
-            $data=array(
+            $data = array(
                 'no_identitas' => $this->input->post('no_identitas'),
                 'nama' => $this->input->post('nama'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
@@ -43,10 +43,10 @@ class Akses extends CI_Controller
                 'jenis_kelamin' => $this->input->post('jk'),
                 'alamat' => $this->input->post('alamat'),
                 'no_hp' => $this->input->post('no_hp'),
-                'foto' => $foto 
+                'foto' => $foto
             );
-        }else{
-            $data=array(
+        } else {
+            $data = array(
                 'no_identitas' => $this->input->post('no_identitas'),
                 'nama' => $this->input->post('nama'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
@@ -55,41 +55,40 @@ class Akses extends CI_Controller
                 'alamat' => $this->input->post('alamat'),
                 'no_hp' => $this->input->post('no_hp')
             );
-
         }
 
 
-        if($this->Akses_model->updateProfile($id_user,$data)){
+        if ($this->Akses_model->updateProfile($id_user, $data)) {
             redirect('Akses/Profil');
         }
     }
 
 
 
-    Public function gantiPassword()
+    public function gantiPassword()
     {
         $this->template->tampil('admin/ganti_password_view');
     }
 
-    Public function updatePassword()
+    public function updatePassword()
     {
-        $paslam=$this->input->post('paslam');
-        $pasnew=$this->input->post('pasnew');
-        $conpas=$this->input->post('conpas');
+        $paslam = md5($this->input->post('paslam'));
+        $pasnew = md5($this->input->post('pasnew'));
+        $conpas = md5($this->input->post('conpas'));
 
         $data = $this->Akses_model->getProfil()->row_array();
-        
-        if($paslam != $data['password']){
+
+        if ($paslam != $data['password']) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Password lama anda salah<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             redirect('akses/gantiPassword');
         } else {
             if ($pasnew != $conpas) {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Konfirmasi Password tidak sama<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            redirect('akses/gantiPassword');
+                redirect('akses/gantiPassword');
             } else {
-                if ($this->db->update('tb_user',['password'=>$pasnew],['id_user'=>$data['id_user']])){
+                if ($this->db->update('tb_user', ['password' => $pasnew], ['id_user' => $data['id_user']])) {
                     $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Berhasil rubah password<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            redirect('akses/gantiPassword');
+                    redirect('akses/gantiPassword');
                     redirect('akses/gantiPassword');
                 }
             }
@@ -98,20 +97,21 @@ class Akses extends CI_Controller
 
 
 
-    private function _uploadImage($name){
+    private function _uploadImage($name)
+    {
         // konfigurasi
         $config['upload_path']          = './assets/img/';
         $config['allowed_types']        = 'gif|jpg|jpeg|png';
         $config['encrypt_name']         = TRUE; //Enkripsi nama yang terupload
-        $config['overwrite']			= TRUE;
+        $config['overwrite']            = TRUE;
         $config['max_size']             = 2048; // 2MB
         $config['file_ext_tolower']     = TRUE;
-        $this->load->library('upload', $config);        
+        $this->load->library('upload', $config);
         // bila berhasil
-        if ($this->upload->do_upload($name)) {            
+        if ($this->upload->do_upload($name)) {
             // ambil nama file foto
             return $this->upload->data("file_name");
-        }else{
+        } else {
             return "";
         }
     }

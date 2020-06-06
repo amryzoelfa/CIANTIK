@@ -14,7 +14,7 @@ $getNama = $this->session->userdata('session_nama');
 
   <!-- Topbar Navbar -->
   <ul class="navbar-nav ml-auto">
-    <?php echo $this->session->flashdata('message'); ?>
+    <?php echo $this->session->flashdata('pesan'); ?>
     <li class="nav-item no-arrow">
       <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span class="mr-2 d-none d-lg-inline text-gray-600 medium"><?php if ($getAkses == 1) {

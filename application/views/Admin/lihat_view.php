@@ -13,7 +13,11 @@
                     <table id="dataTable" width="100%" cellspacing="0">
                         <tr>
                             <td>
-                                <center><img src="<?php echo base_url("/assets"); ?>/img/<?php echo $user['foto']; ?>" width="150" height="225"></center>
+                                <center><img src="<?php if ($user['foto'] == NULL) {
+                                                        echo base_url('assets/img/profile.jpg');
+                                                    } else {
+                                                        echo base_url("/assets"); ?>/img/<?php echo $user['foto'];
+                                                                    } ?>" width="150" height="225"></center>
                             </td>
                         </tr>
                         <tr>

@@ -32,23 +32,23 @@ class Login extends CI_Controller
             $this->session->set_userdata('session_nama', $nama);
             // redirect('Admin');
             if ($akses == 1) {
-                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Selamat, ' . $nama . ' Berhasil Login sebagai Admin</div>');
+                $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Selamat, ' . $nama . ' Berhasil Login sebagai Admin <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
                 redirect('Admin');
             } elseif ($akses == 2) {
-                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Selamat, ' . $nama . ' Berhasil Login sebagai Pasien</div>');
+                $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Selamat, ' . $nama . ' Berhasil Login sebagai Pasien <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
                 redirect('Pasien');
             } else if ($akses == 3) {
-                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Selamat, ' . $nama . ' Berhasil Login sebagai Dokter Umum</div>');
+                $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Selamat, ' . $nama . ' Berhasil Login sebagai Dokter Umum <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
                 redirect('Dokter');
             } else if ($akses == 4) {
-                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Selamat, ' . $nama . ' Berhasil Login sebagai Dokter Gigi</div>');
+                $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Selamat, ' . $nama . ' Berhasil Login sebagai Dokter Gigi <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
                 redirect('Dokter');
             } else if ($akses == 5) {
-                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Selamat, ' . $nama . ' Berhasil Login sebagai Apoteker</div>');
+                $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Selamat, ' . $nama . ' Berhasil Login sebagai Apoteker <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
                 redirect('Apoteker');
             }
         } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal! Mohon Periksa kembali.</div>');
+            $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal! Mohon Periksa kembali.</div>');
             $this->load->view('auth/login_view');
         }
     }

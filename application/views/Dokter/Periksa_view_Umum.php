@@ -85,7 +85,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">&nbsp;</label>
                     <div class="col-sm-10">
-                        <a href="<?php echo base_url('Dokter/back_umum'); ?>" class="btn btn-primary" name="periksa" value="submit">KEMBALI</a>
+                        <a href="<?php echo base_url('Dokter/antrianUmum');?>" class="btn btn-primary" name="periksa" value="submit">KEMBALI</a>
                         <button class="btn btn-primary">SELESAI</button>
                     </div>
                 </div>

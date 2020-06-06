@@ -17,6 +17,7 @@ class Apoteker extends CI_Controller
         $data['jumlahAUmum'] = $this->Dashboard_model->getAntrianUmum();
         $data['jumlahAGigi'] = $this->Dashboard_model->getAntrianGigi();
         $data['jumlahKunjunganHari'] = $this->Dashboard_model->getKunjunganHari();
+        $data['jumlahKunjunganBulan'] = $this->Dashboard_model->getKunjunganBulan();
         $this->template->tampil('Apoteker/aDashboard_view', $data);
     }
 
@@ -40,6 +41,6 @@ class Apoteker extends CI_Controller
 
         $data['riwayat'] = $this->Apoteker_model->Riwayat($whereantrian, $wherepoli);
         $this->template->tampil('Apoteker/aRiwayatp_view', $data);
-        $this->Apoteker_model->update_status_obat($whereantrian,$wherepoli);
+        $this->Apoteker_model->update_status_obat($whereantrian, $wherepoli);
     }
 }

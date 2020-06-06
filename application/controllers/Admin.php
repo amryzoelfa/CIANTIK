@@ -18,6 +18,7 @@ class Admin extends CI_Controller
         $data['jumlahDokter'] = $this->Dashboard_model->getJumlahDokter();
         $data['jumlahApoteker'] = $this->Dashboard_model->getJumlahApoteker();
         $data['jumlahKunjunganHari'] = $this->Dashboard_model->getKunjunganHari();
+        $data['jumlahKunjunganBulan'] = $this->Dashboard_model->getKunjunganBulan();
         $data['jumlahAUmum'] = $this->Dashboard_model->getAntrianUmum();
         $data['jumlahAGigi'] = $this->Dashboard_model->getAntrianGigi();
         $this->template->tampil('Admin/dashboard_view', $data);

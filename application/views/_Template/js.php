@@ -16,9 +16,9 @@
   <script src="<?php echo base_url('assets/js/demo/datatables-demo.js') ?>"></script>
 
   <script type="text/javascript">
-    $(document).ready(function() {
-      $('#dataTable').DataTable();
-    });
+    function goBack() {
+      window.history.back();
+    }
   </script>
 
   <script src="<?php echo base_url('assets/plugin/jquery-ui/jquery-ui.min.js') ?>"></script>

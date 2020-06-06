@@ -9,6 +9,13 @@ class Master extends CI_Controller
         $this->load->library('template');
     }
 
+    function index($id_user)
+    {
+        $where = array('id_user' => $id_user);
+        $data['user'] = $this->Master_model->tampil($where, 'tb_user')->row_array();
+        $this->template->tampil('Admin/lihat_view', $data);
+    }
+
     public function DataAkses()
     {
         $data['akses'] = $this->Admin_model->getAkses();
@@ -66,24 +73,25 @@ class Master extends CI_Controller
         }
     }
 
-    public function hapus($id_user)
+    public function hapusPasien($id_user)
     {
-        $akses = $this->input->post('akses');
-        $data = array(
-            'id_akses' => $akses
-        );
         $where = array('id_user' => $id_user);
         $this->Master_model->hapus_data($where, 'tb_user');
-        // redirect('Admin');
-        if ($akses == 2) {
-            redirect('Master/DataPasien');
-        } elseif ($akses == 3) {
-            redirect('Master/DataDokter');
-        } else if ($akses == 4) {
-            redirect('Master/DataDokter');
-        } else if ($akses == 5) {
-            redirect('Master/DataApoteker');
-        }
+        redirect('Master/DataPasien');
+    }
+
+    public function hapusDokter($id_user)
+    {
+        $where = array('id_user' => $id_user);
+        $this->Master_model->hapus_data($where, 'tb_user');
+        redirect('Master/DataDokter');
+    }
+
+    public function hapusApoteker($id_user)
+    {
+        $where = array('id_user' => $id_user);
+        $this->Master_model->hapus_data($where, 'tb_user');
+        redirect('Master/DataApoteker');
     }
 
     public function DataApoteker()

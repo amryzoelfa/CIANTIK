@@ -52,11 +52,9 @@
                             <td><?php echo $data->no_hp; ?></td>
                             <td><?php echo $data->alamat; ?></td>
                             <td>
-                                <?php
-                                echo '<a href="' . base_url('Master/edit/' . $data->id_user) . '" class="btn btn-warning"><i class="fas fa-edit"></i></a>';
-                                // echo "||";
-                                echo '<a href="' . base_url('Master/hapus/' . $data->id_user) . '"  class="btn btn-danger"><i class="fa fa-trash"></i></a>';
-                                ?>
+                                <a href="<?php echo base_url('Master/index/' . $data->id_user) ?>" class="btn btn-circle btn-success"><i class="far fa-eye"></i></a>
+                                <a href="<?php echo base_url('Master/edit/' . $data->id_user) ?>" class="btn btn-circle btn-warning"><i class="fas fa-edit"></i></a>
+                                <a href="<?php echo base_url('Master/hapusDokter/' . $data->id_user) ?>" onclick="return confirm('Apakah anda yakin?')" class="btn btn-circle btn-danger"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr><?php } ?>
                 </tbody>

@@ -48,6 +48,12 @@ class Dashboard_model extends CI_Model
         return $this->db->query($query)->row_array();
     }
 
+    public function getKunjunganBulan()
+    {
+        $query = "SELECT COUNT(*) as totalkb FROM tb_periksa WHERE MONTH(tanggal) GROUP BY MONTH(tanggal)";
+        return $this->db->query($query)->row_array();
+    }
+
     // public function getAntrianSudah()
     // {
     //     $query = "SELECT COUNT(*) as total_antrian FROM tb_antrian,tb_poli,tb_periksa WHERE tb_antrian.id_poli=tb_poli.id_poli AND tb_poli.id_poli=tb_periksa.id_poli AND tanggal=CURRENT_DATE() AND tb_periksa.id_status_periksa=2 ";

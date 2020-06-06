@@ -70,4 +70,10 @@ class Master_model extends CI_Model
         $this->db->where($where);
         $this->db->delete($table);
     }
+
+    function tampil($where)
+    {
+        $this->db->where($where);
+        return $this->db->get('tb_user');
+    }
 }

@@ -98,6 +98,9 @@
         <label class="col-sm-2 col-form-label">&nbsp;</label>
         <div class="col-sm-10">
             <input type="submit" name="daftar" class="btn btn-primary" value="SIMPAN">
+            <a class="btn btn-danger" onclick="goBack()">
+                <font color="white">Kembali</font>
+            </a>
         </div>
     </div>
 </form>

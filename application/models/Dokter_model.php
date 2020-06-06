@@ -76,22 +76,15 @@ class Dokter_model extends CI_Model
 		$this->db->where('tanggal',$tanggal);
 		$this->db->update('tb_periksa',$ubah);
 	}
-	function cariProsesUmum(){
-		$query1 = "SELECT tb_periksa.no_antrian, tb_user.nama, tb_periksa.tanggal, tb_periksa.id_status_periksa, tb_periksa.id_user FROM tb_user , tb_periksa WHERE tb_user.id_user = tb_periksa.id_user AND tb_periksa.tanggal = CURRENT_DATE() AND tb_periksa.id_poli = 1 AND tb_periksa.id_status_periksa = 3";
-		return $this->db->query($query1)->result();
-	}
 	function kembali_umum(){
 		$tanggal = date('Y-m-d');
 		$ubah = [
 			'id_status_periksa' => 1,
 		];
 		$this->db->where('id_poli',1);
+		$this->db->where('id_status_periksa',3);
 		$this->db->where('tanggal',$tanggal);
 		$this->db->update('tb_periksa',$ubah);
-	}
-	function cariProsesGigi(){
-		$query1 = "SELECT tb_periksa.no_antrian, tb_user.nama, tb_periksa.tanggal, tb_periksa.id_status_periksa, tb_periksa.id_user FROM tb_user , tb_periksa WHERE tb_user.id_user = tb_periksa.id_user AND tb_periksa.tanggal = CURRENT_DATE() AND tb_periksa.id_poli = 2 AND tb_periksa.id_status_periksa = 3";
-		return $this->db->query($query1)->result();
 	}
 	function kembali_gigi(){
 		$tanggal = date('Y-m-d');
@@ -99,6 +92,7 @@ class Dokter_model extends CI_Model
 			'id_status_periksa' => 1,
 		];
 		$this->db->where('id_poli',2);
+		$this->db->where('id_status_periksa',3);
 		$this->db->where('tanggal',$tanggal);
 		$this->db->update('tb_periksa',$ubah);
 	}

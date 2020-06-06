@@ -23,14 +23,12 @@ class Dokter extends CI_Controller
     }
     function antrianUmum()
     {
-        $data['proses'] = $this->Dokter_model->cariProsesUmum();
         $this->Dokter_model->kembali_umum();
         $data['antrian'] = $this->Dokter_model->drUmum();
         $this->template->tampil('Dokter/AntrianUmum_view', $data);
     }
     function antrianGigi()
     {
-        $data['proses'] = $this->Dokter_model->cariProsesGigi();
         $this->Dokter_model->kembali_gigi();
         $data['antrian'] = $this->Dokter_model->drGigi();
         $this->template->tampil('Dokter/AntrianGigi_view', $data);

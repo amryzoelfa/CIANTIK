@@ -49,9 +49,22 @@ class Api extends CI_Controller
         $result = $this->Api_model->loginApi($username, $password);
         echo json_encode($result);
     }
+
     public function Riwayat()
     {
         $data = $this->Api_model->getRiwayat();
         echo json_encode($data->result_array());
+    }
+
+    public function antrianUmum()
+    {
+        $data = $this->Api_model->getAntrianUmum();
+        echo json_encode($data->row_array());
+    }
+
+    public function antrianGigi()
+    {
+        $data = $this->Api_model->getAntrianGigi();
+        echo json_encode($data->row_array());
     }
 }

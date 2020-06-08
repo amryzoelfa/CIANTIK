@@ -43,6 +43,7 @@ class Akses extends CI_Controller
                 'jenis_kelamin' => $this->input->post('jk'),
                 'alamat' => $this->input->post('alamat'),
                 'no_hp' => $this->input->post('no_hp'),
+                'username' => $this->input->post('username'),
                 'foto' => $foto
             );
         } else {
@@ -53,7 +54,8 @@ class Akses extends CI_Controller
                 'tanggal_lahir' => $this->input->post('tanggal_lahir'),
                 'jenis_kelamin' => $this->input->post('jk'),
                 'alamat' => $this->input->post('alamat'),
-                'no_hp' => $this->input->post('no_hp')
+                'no_hp' => $this->input->post('no_hp'),
+                'username' => $this->input->post('username')
             );
         }
 

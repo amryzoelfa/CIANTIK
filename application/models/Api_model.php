@@ -16,6 +16,7 @@ class Api_model extends CI_Model
         $query = $this->db->get();
         return $query;
     }
+
     function cekUser($user)
     {
         $this->db->select('*');
@@ -24,6 +25,7 @@ class Api_model extends CI_Model
         $query = $this->db->get();
         return $query;
     }
+
     function cekID($id_user)
     {
         $this->db->select('*');
@@ -32,12 +34,39 @@ class Api_model extends CI_Model
         $query = $this->db->get();
         return $query;
     }
+
     function getRiwayat()
     {
-        $this->db->select('tanggal_periksa,id_poli,diagnosa,tindakan,resep_obat');
+        $this->db->select('tanggal,id_poli,diagnosa,tindakan,resep_obat');
         $this->db->from('tb_periksa');
         $this->db->join('tb_user', 'tb_periksa.id_user=tb_user.id_user');
         $this->db->where('tb_periksa.id_status_periksa', 2);
+        $query = $this->db->get("");
+        return $query;
+    }
+
+    function getAntrianUmum()
+    {
+        $this->db->select('no_antrian');
+        $this->db->from('tb_periksa');
+        $this->db->join('tb_poli', 'tb_periksa.id_poli=tb_poli.id_poli');
+        $this->db->where('tb_periksa.id_status_periksa', 3);
+        $this->db->where('tb_periksa.id_poli', 1);
+        $this->db->where('tb_periksa.tanggal', 'NOW()');
+        $this->db->group_by('tb_periksa.id_periksa');
+        $query = $this->db->get("");
+        return $query;
+    }
+
+    function getAntrianGigi()
+    {
+        $this->db->select('no_antrian');
+        $this->db->from('tb_periksa');
+        $this->db->join('tb_poli', 'tb_periksa.id_poli=tb_poli.id_poli');
+        $this->db->where('tb_periksa.id_status_periksa', 3);
+        $this->db->where('tb_periksa.id_poli', 2);
+        $this->db->where('tb_periksa.tanggal', 'NOW()');
+        $this->db->group_by('tb_periksa.id_periksa');
         $query = $this->db->get("");
         return $query;
     }

@@ -23,6 +23,11 @@
                                                                     } ?>" width="150" height="225"></center>
               </td>
             </tr>
+            <tr>
+              <td>
+                <center><?php echo $user['username']; ?></center>
+              </td>
+            </tr>
           </table>
         </div>
       </form>
@@ -103,18 +108,36 @@
       <div class="modal-body">
         <form action="<?php echo base_url('akses/updateProfile'); ?>" method="post" enctype="multipart/form-data">
           <input type="hidden" name="id" value="<?php echo $user['id_user']; ?>">
+
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Foto Profil</label>
+            <div class="col-sm-8">
+              <input type="checkbox" name="ubah_foto" value="true"> Ceklis jika ingin mengubah foto<br>
+              <input type="file" name="foto" accept="image/*" value="" clas size="4" s="form-control-file">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Username</label>
+            <div class="col-sm-8">
+              <input type="text" name="username" id="username" value="<?php echo $user['username']; ?>" size="4" class="form-control" required>
+            </div>
+          </div>
+
           <div class="form-group row">
             <label class="col-sm-4 col-form-label">ID</label>
             <div class="col-sm-8">
               <input type="text" name="no_identitas" id="no_identitas" value="<?php echo $user['no_identitas']; ?>" size="4" class="form-control" required>
             </div>
           </div>
+
           <div class="form-group row">
             <label class="col-sm-4 col-form-label">Nama</label>
             <div class="col-sm-8">
               <input type="text" name="nama" id="nama" value="<?php echo $user['nama']; ?>" size="4" class="form-control" required>
             </div>
           </div>
+
           <div class="form-group row">
             <label class="col-sm-4 col-form-label">Tempat, Tanggal Lahir</label>
             <div class="col-sm-3">
@@ -124,6 +147,7 @@
               <input type="date" name="tanggal_lahir" id="tanggal_lahir" value="<?php echo $user['tanggal_lahir']; ?>" size="4" class="form-control" required>
             </div>
           </div>
+
           <div class="form-group row">
             <label class="col-sm-4 col-form-label">Jenis Kelamin</label>
             <div class="col-sm-8">
@@ -137,25 +161,21 @@
               </select>
             </div>
           </div>
+
           <div class="form-group row">
             <label class="col-sm-4 col-form-label">Alamat</label>
             <div class="col-sm-8">
               <textarea type="text" name="alamat" id="alamat" value="<?php echo $user['alamat']; ?>" size="4" class="form-control" required><?php echo $user['alamat']; ?></textarea>
             </div>
           </div>
+
           <div class="form-group row">
             <label class="col-sm-4 col-form-label">No HP</label>
             <div class="col-sm-8">
               <input type="text" name="no_hp" id="no_hp" value="<?php echo $user['no_hp']; ?>" size="4" class="form-control" required>
             </div>
           </div>
-          <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Foto Profil</label>
-            <div class="col-sm-8">
-              <input type="checkbox" name="ubah_foto" value="true"> Ceklis jika ingin mengubah foto<br>
-              <input type="file" name="foto" accept="image/*" value="" clas size="4" s="form-control-file">
-            </div>
-          </div>
+
           <div class="modal-footer">
             <button type="button" class="btn btn-default btn-danger" data-dismiss="modal">Keluar</button>
             <input type="submit" name="eprofil" class="btn btn-primary" value="SIMPAN">

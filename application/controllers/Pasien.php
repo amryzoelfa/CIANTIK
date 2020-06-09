@@ -48,4 +48,14 @@ class Pasien extends CI_Controller
         // var_dump($data);die();
         $this->template->tampil('Pasien/pCetakGigi_view', $data);
     }
+
+    public function insertAntrian()
+    {
+    }
+
+    public function ambilUmum()
+    {
+        $data['ambil'] = $this->Pasien_model->insertUmum();
+        $this->load->view('Pasien/pCetakUmum_view', $data);
+    }
 }

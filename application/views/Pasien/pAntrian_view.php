@@ -15,7 +15,7 @@
                                 <td>&nbsp;</td>
                                 <td align="center">
                                     <H1>
-                                        <font color="white">POLI UMUM
+                                        <font color="white">POLI UMUM</font>
                                     </H1>
                                 </td>
                                 <td>&nbsp;</td>
@@ -29,7 +29,7 @@
                                     <h2>
                                         <font color="white">A - <?php if (!empty($umum)) {
                                                                     echo $umum['no_antrian'];
-                                                                } ?>
+                                                                } ?></font>
                                     </h2>
                                 </td>
                                 <td>&nbsp;</td>
@@ -38,7 +38,7 @@
                                 <td>&nbsp;</td>
                                 <td align="center">
                                     <h5>
-                                        <font color="white">Jumlah Antrian : <?= $jumlahUmum['jumlah_au']; ?>
+                                        <font color="white">Jumlah Antrian : <?= $jumlahUmum['jumlah_au']; ?></font>
                                     </h5>
                                 </td>
                                 <td>&nbsp;</td>
@@ -48,7 +48,7 @@
                             </TR>
                             <tr>
                                 <td>&nbsp;</td>
-                                <td><a href="<?php echo site_url() . 'Pasien/CetakUmum' ?>" class="btn btn btn-danger" name="ambil" style="width: 100%" value="submit">Ambil Antrian Anda</a></td>
+                                <td><a href="<?php echo site_url() . 'Pasien/ambilUmum' ?>" class="btn btn btn-danger" name="ambil" style="width: 100%" value="submit">Ambil Antrian Anda</a></td>
                                 <td>&nbsp;</td>
                             </tr>
                         </table>
@@ -68,7 +68,7 @@
                                 <td>&nbsp;</td>
                                 <td align="center">
                                     <H1>
-                                        <font color="white">POLI GIGI
+                                        <font color="white">POLI GIGI</font>
                                     </H1>
                                 </td>
                                 <td>&nbsp;</td>
@@ -82,7 +82,7 @@
                                     <h2>
                                         <font color="white">B - <?php if (!empty($gigi)) {
                                                                     echo  $gigi['no_antrian'];
-                                                                } ?>
+                                                                } ?></font>
                                     </h2>
                                 </td>
                                 <td>&nbsp;</td>
@@ -91,7 +91,7 @@
                                 <td>&nbsp;</td>
                                 <td align="center">
                                     <h5>
-                                        <font color="white">Jumlah Antrian : <?= $jumlahGigi['jumlah_ag']; ?>
+                                        <font color="white">Jumlah Antrian : <?= $jumlahGigi['jumlah_ag']; ?></font>
                                     </h5>
                                 </td>
                                 <td>&nbsp;</td>

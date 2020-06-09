@@ -56,54 +56,91 @@ class Pasien_model extends CI_Model
         return $query;
     }
 
-    public function getAntrianUmum()
+    public function tambahUmum()
     {
-        $id_user = $this->session->userdata("session_id");
-        $tanggal = date("Y-m-d");
-        $sql = "SELECT MAX(no_antrian) AS kode FROM tb_periksa WHERE tanggal=CURRENT_DATE() AND id_poli = 1";
-        $data = $this->db->query($sql);
-        $tambah = $data['kode'];
-        $antrian = (int) $tambah;
-        $antrian++;
-        // var_dump($antrian);
-        // die();
-        $query = "INSERT INTO tb_periksa(id_periksa, id_user, id_poli, tanggal, no_antrian, id_status_periksa, id_status_obat) 
-        VALUES ('', '$id_user', '1', '$tanggal', '$antrian', '1','1')";
-        return $this->db->query($query);
-        //UPDATE tb_periksa SET tanggal = $tanggal, no_antrian = $antrian WHERE id_poli=1 AND tanggal = CURRENT_DATE() AND id_user=$id_user
-    }
-
-    public function updateAntrianGigi()
-    {
-        $id_user = $this->session->userdata("session_id");
-        $tanggal = date("Y-m-d");
-        $tambah = "SELECT MAX(no_antrian) FROM tb_periksa WHERE tanggal=CURRENT_DATE() AND id_poli=1";
-        $antrian = $tambah['no_antrian'] + 1;
-        $query = "INSERT INTO tb_periksa(id_periksa, id_user, id_poli, tanggal, no_antrian, id_status_periksa, id_status_obat) VALUES ('', '$id_user', '1', '$tanggal', '$antrian', '1','1')";
-        return $this->db->query($query);
-        //UPDATE tb_periksa SET tanggal = $tanggal, no_antrian = $antrian WHERE id_poli=1 AND tanggal = CURRENT_DATE() AND id_user=$id_user
-    }
-
-    public function updateAntrianUmum()
-    {
-        $this->db->select('MAX(tb_periksa.no_antrian) as nomor');
+        $this->db->select("COUNT(no_antrian) AS antrianUmum");
         $this->db->where('tanggal', 'CURRENT_DATE()');
         $this->db->where('id_poli', 1);
-        $query = $this->db->get('tb_periksa');  //cek dulu apakah ada sudah ada kode di tabel.    
+        $query = $this->db->get('tb_periksa');
         if ($query->num_rows() <> 0) {
             //cek kode jika telah tersedia    
             $data = $query->row();
-            $kode = intval($data->no_antrian) + 1;
+            $noUmum = intval($data->antrianUmum) + 1;
         } else {
-            $kode = 1;  //cek jika kode belum terdapat pada table
+            $noUmum = 1;  //cek jika kode belum terdapat pada table
         }
-        // var_dump($kode);
-        // die();
+        return $noUmum;
+    }
+
+    public function insertUmum()
+    {
         $id_user = $this->session->userdata("session_id");
         $tanggal = date("Y-m-d");
-        $antrian = "00" . $kode;  //format kode
-        $sql = "INSERT INTO tb_periksa(id_periksa, id_user, id_poli, tanggal, no_antrian, id_status_periksa, id_status_obat) VALUES ('', '$id_user', '1', '$tanggal', '$antrian', '1','1')";
-        return $this->db->query($sql);
-        //return $kodetampil;
+        $antrian = $this->tambahUmum();
+        $query = "INSERT INTO tb_periksa(id_periksa, id_user, id_poli, tanggal, no_antrian, id_status_periksa, id_status_obat) VALUES ('', '$id_user', '1', '$tanggal', '$antrian', '1','1')";
+        return $this->db->query($query);
+    }
+
+
+    public function insertAntrian($data)
+    {
+        $this->db->insert('tb_periksa', $data);
+        return $this->db->insert_id();
     }
 }
+
+
+
+
+// public function updateAntrianGigi()
+//     {
+//         $id_user = $this->session->userdata("session_id");
+//         $tanggal = date("Y-m-d");
+//         $tambah = "SELECT MAX(no_antrian) FROM tb_periksa WHERE tanggal=CURRENT_DATE() AND id_poli=1";
+//         $antrian = $tambah['no_antrian'] + 1;
+//         $query = "INSERT INTO tb_periksa(id_periksa, id_user, id_poli, tanggal, no_antrian, id_status_periksa, id_status_obat) VALUES ('', '$id_user', '1', '$tanggal', '$antrian', '1','1')";
+//         return $this->db->query($query);
+//         //UPDATE tb_periksa SET tanggal = $tanggal, no_antrian = $antrian WHERE id_poli=1 AND tanggal = CURRENT_DATE() AND id_user=$id_user
+//     }
+
+//     public function updateAntrianUmum()
+//     {
+//         $this->db->select('COUNT(tb_periksa.no_antrian) as nomor');
+//         $this->db->where('tanggal', 'CURRENT_DATE()');
+//         $this->db->where('id_poli', 1);
+//         $query = $this->db->get('tb_periksa');  //cek dulu apakah ada sudah ada kode di tabel.    
+//         if ($query->num_rows() <> 0) {
+//             //cek kode jika telah tersedia    
+//             $data = $query->row();
+//             $kode = intval($data->nomor) + 1;
+//         } else {
+//             $kode = 1;  //cek jika kode belum terdapat pada table
+//         }
+//         // var_dump($kode);
+//         // die();
+//         $id_user = $this->session->userdata("session_id");
+//         $tanggal = date("Y-m-d");
+//         $antrian = "00" . $kode;  //format kode
+//         $sql = "INSERT INTO tb_periksa(id_periksa, id_user, id_poli, tanggal, no_antrian, id_status_periksa, id_status_obat) VALUES ('', '$id_user', '1', '$tanggal', '$antrian', '1','1')";
+//         return $this->db->query($sql);
+//         //return $kodetampil;
+//     }
+
+    // public function getAntrianUmum()
+    // {
+    //     $id_user = $this->session->userdata("session_id");
+    //     $tanggal = date("Y-m-d");
+    //     $sql = "SELECT COUNT(no_antrian) AS kode FROM tb_periksa WHERE tanggal=CURRENT_DATE() AND id_poli = 1";
+    //     $data = $this->db->query($sql);
+    //     $tambah = $data['kode'];
+    //     $antrian = (int) $tambah;
+    //     $antrian++;
+
+    //     return $antrian;
+    //     // var_dump($antrian);
+    //     // die();
+    //     $query = "INSERT INTO tb_periksa(id_periksa, id_user, id_poli, tanggal, no_antrian, id_status_periksa, id_status_obat) 
+    //     VALUES ('', '$id_user', '1', '$tanggal', '$antrian', '1','1')";
+    //     return $this->db->query($query);
+    //     //UPDATE tb_periksa SET tanggal = $tanggal, no_antrian = $antrian WHERE id_poli=1 AND tanggal = CURRENT_DATE() AND id_user=$id_user
+    // }

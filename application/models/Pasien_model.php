@@ -58,18 +58,26 @@ class Pasien_model extends CI_Model
 
     public function tambahUmum()
     {
-        $this->db->select("COUNT(no_antrian) AS antrianUmum");
-        $this->db->where('tanggal', 'CURRENT_DATE()');
+        $tanggal = date('Y-m-d');
+        $this->db->select("no_antrian");
+        $this->db->from('tb_periksa');
+        $this->db->where('tanggal', $tanggal);
         $this->db->where('id_poli', 1);
-        $query = $this->db->get('tb_periksa');
-        if ($query->num_rows() <> 0) {
-            //cek kode jika telah tersedia    
-            $data = $query->row();
-            $noUmum = intval($data->antrianUmum) + 1;
+        // $query = $this->db->get('tb_periksa');
+        // if ($query->num_rows() <> 0) {
+        //     //cek kode jika telah tersedia    
+        //     $data = $query->row();
+        //     $noUmum = intval($data->antrianUmum) + 1;
+        // } else {
+        //     $noUmum = 1;  //cek jika kode belum terdapat pada table
+        // }
+        // return $noUmum;
+        $data = $this->db->get();
+        if ($data->num_rows() > 0) {
+            return $data->result_array();
         } else {
-            $noUmum = 1;  //cek jika kode belum terdapat pada table
+            return false;
         }
-        return $noUmum;
     }
 
     public function insertUmum()
@@ -85,7 +93,11 @@ class Pasien_model extends CI_Model
     public function insertAntrian($data)
     {
         $this->db->insert('tb_periksa', $data);
-        return $this->db->insert_id();
+    }
+
+    function input_umum($data, $table)
+    {
+        $this->db->insert($table, $data);
     }
 }
 

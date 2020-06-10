@@ -48,7 +48,7 @@
                             </TR>
                             <tr>
                                 <td>&nbsp;</td>
-                                <td><a href="<?php echo site_url() . 'Pasien/ambilUmum' ?>" class="btn btn btn-danger" name="ambil" style="width: 100%" value="submit">Ambil Antrian Anda</a></td>
+                                <td><a href="<?php echo site_url() . 'Pasien/tambahUmum' ?>" class="btn btn btn-danger" name="ambil" style="width: 100%" value="submit">Ambil Antrian Anda</a></td>
                                 <td>&nbsp;</td>
                             </tr>
                         </table>

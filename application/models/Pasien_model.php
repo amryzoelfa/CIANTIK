@@ -44,36 +44,24 @@ class Pasien_model extends CI_Model
         return $this->db->query($query);
     }
 
-    public function getTambahUmum()
-    {
-        $id_user = $this->session->userdata("session_id");
-        $this->db->select('*');
-        $this->db->from('tb_periksa');
-        $this->db->join('tb_user', 'tb_user.id_user=tb_periksa.id_user');
-        $this->db->where('tb_periksa.id_poli', 1);
-        $this->db->where('tb_periksa.id_user', $id_user);
-        $query = $this->db->get("");
-        return $query;
-    }
-
     public function tambahUmum()
     {
         $tanggal = date('Y-m-d');
-        $this->db->select("no_antrian");
-        $this->db->from('tb_periksa');
+        $this->db->select("COUNT(no_antrian) AS antrianUmum");
+        //$this->db->from('tb_periksa');
         $this->db->where('tanggal', $tanggal);
         $this->db->where('id_poli', 1);
-        // $query = $this->db->get('tb_periksa');
-        // if ($query->num_rows() <> 0) {
-        //     //cek kode jika telah tersedia    
-        //     $data = $query->row();
-        //     $noUmum = intval($data->antrianUmum) + 1;
-        // } else {
-        //     $noUmum = 1;  //cek jika kode belum terdapat pada table
-        // }
-        // return $noUmum;
+        $query = $this->db->get('tb_periksa');
+        if ($query->num_rows() <> 0) {
+            //cek kode jika telah tersedia    
+            $data = $query->row();
+            $noUmum = intval($data->antrianUmum) + 1;
+        } else {
+            $noUmum = 1;  //cek jika kode belum terdapat pada table
+        }
+        return $noUmum;
         $data = $this->db->get();
-        if ($data->num_rows() > 0) {
+        if ($data->num_rows() <> 0) {
             return $data->result_array();
         } else {
             return false;
@@ -89,16 +77,47 @@ class Pasien_model extends CI_Model
         return $this->db->query($query);
     }
 
-
-    public function insertAntrian($data)
+    public function tambahGigi()
     {
-        $this->db->insert('tb_periksa', $data);
+        $tanggal = date('Y-m-d');
+        $this->db->select("COUNT(no_antrian) AS antrianGigi");
+        $this->db->where('tanggal', $tanggal);
+        $this->db->where('id_poli', 2);
+        $query = $this->db->get('tb_periksa');
+        if ($query->num_rows() <> 0) {
+            //cek kode jika telah tersedia    
+            $data = $query->row();
+            $noUmum = intval($data->antrianGigi) + 1;
+        } else {
+            $noUmum = 1;  //cek jika kode belum terdapat pada table
+        }
+        return $noUmum;
+        $data = $this->db->get();
+        if ($data->num_rows() <> 0) {
+            return $data->result_array();
+        } else {
+            return false;
+        }
     }
 
-    function input_umum($data, $table)
+    public function insertGigi()
     {
-        $this->db->insert($table, $data);
+        $id_user = $this->session->userdata("session_id");
+        $tanggal = date("Y-m-d");
+        $antrian = $this->tambahGigi();
+        $query = "INSERT INTO tb_periksa(id_periksa, id_user, id_poli, tanggal, no_antrian, id_status_periksa, id_status_obat) VALUES ('', '$id_user', '2', '$tanggal', '$antrian', '1','1')";
+        return $this->db->query($query);
     }
+
+    // public function insertAntrian($data)
+    // {
+    //     $this->db->insert('tb_periksa', $data);
+    // }
+
+    // function input_umum($data, $table)
+    // {
+    //     $this->db->insert($table, $data);
+    //}
 }
 
 
@@ -155,4 +174,16 @@ class Pasien_model extends CI_Model
     //     VALUES ('', '$id_user', '1', '$tanggal', '$antrian', '1','1')";
     //     return $this->db->query($query);
     //     //UPDATE tb_periksa SET tanggal = $tanggal, no_antrian = $antrian WHERE id_poli=1 AND tanggal = CURRENT_DATE() AND id_user=$id_user
+    // }
+
+    // public function getTambahUmum()
+    // {
+    //     $id_user = $this->session->userdata("session_id");
+    //     $this->db->select('*');
+    //     $this->db->from('tb_periksa');
+    //     $this->db->join('tb_user', 'tb_user.id_user=tb_periksa.id_user');
+    //     $this->db->where('tb_periksa.id_poli', 1);
+    //     $this->db->where('tb_periksa.id_user', $id_user);
+    //     $query = $this->db->get("");
+    //     return $query;
     // }

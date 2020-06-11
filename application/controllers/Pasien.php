@@ -55,6 +55,12 @@ class Pasien extends CI_Controller
         $this->load->view('Pasien/pCetakUmum_view', $data);
     }
 
+    public function ambilGigi()
+    {
+        $data['ambil'] = $this->Pasien_model->insertGigi();
+        $this->load->view('Pasien/pCetakUmum_view', $data);
+    }
+
     public function insertUmum()
     {
         $id_user = $this->session->userdata("session_id");
@@ -74,50 +80,9 @@ class Pasien extends CI_Controller
 
     public function tambahUmum()
     {
-        $antrian = '';
-
-        if ($data = $this->Pasien_model->tambahUmum(true)) {
-
-            $no_urut = (int) substr($data[0]['no_antrian'], 1, 3);
-
-            if (strlen($no_urut) == 1) {
-                $antrian = "00" . ((int) $no_urut + 1);
-            } else {
-                $antrian = "0" . ((int) $no_urut + 1);
-            }
-
-            $tanggal = date('Y-m-d');
-            $id_user = $this->session->userdata("session_id");
-            $periksa = 1;
-            $obat = 1;
-            $data = array(
-                'id_user' => $id_user,
-                'id_poli' => 1,
-                'tanggal' => $tanggal,
-                'id_status_periksa' => $periksa,
-                'id_status_obat' => $obat,
-                'no_antrian' => $antrian
-            );
-
-            $antrian = $this->Pasien_model->insertAntrian($data);
-        } else {
-            $antrian = '001';
-            $tanggal = date('Y-m-d');
-            $id_user = $this->session->userdata("session_id");
-            $periksa = 1;
-            $obat = 1;
-            $data = array(
-                'id_user' => $id_user,
-                'id_poli' => 1,
-                'tanggal' => $tanggal,
-                'id_status_periksa' => $periksa,
-                'id_status_obat' => $obat,
-                'no_antrian' => $antrian
-
-            );
-
-            $antrian = $this->Pasien_model->insertAntrian($data);
-        }
+        $db = $this->Pasien_model->tambahUmum();
+        $nomor = substr($db, 2, 3);
+        $antrian = (int) $nomor + 1;
         return $antrian;
     }
 }

@@ -1,3 +1,18 @@
+<html>
+<head>
+
+  <title>Antrian Anda</title>
+  
+  <!-- BOOTSTRAP STYLES-->
+  <link href="<?php echo base_url('assets/home/css/bootstrap.css');?>" rel="stylesheet" />
+  <!-- FONTAWESOME STYLES-->
+  <link href="<?php echo base_url('assets/home/css/font-awesome.min.css');?>" rel="stylesheet" />
+  <!-- GOOGLE FONTS-->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+  <link rel="stylesheet" href="<?php echo base_url('assets/plugin/jquery-ui/jquery-ui.min.css');?>" /> <!-- Load file css jquery-ui -->
+  <script src="<?php echo base_url('assets/home/js/jquery.min.js'); ?>"></script> <!-- Load file jquery -->
+
+</head>
 <body>
   <table>
     <tr>
@@ -28,14 +43,17 @@
   </tr>
     <tr>
       <td>&nbsp;</td>
-      <td align="center"><h1>A - <?php echo $umum[0]['ambil']; ?></h1></td>
+      <?php foreach ($antrian as $key) {
+        ?>
+      <td align="center"><h1>A - <?php echo $key->umum; ?></h1></td>
       <td>&nbsp;</td>
-    <?php ?>
     </tr>
+  <?php } ?>
   <tr>
       <td>&nbsp;</td>
-      <td align="center"><?php echo $umum[0]['tanggal']; ?></td>
+      <td align="center"><?php $tanggal = date("Y-m-d"); echo $tanggal;  ?></td>
       <td>&nbsp;</td>
+  
   </tr>
   <tr>
       <td>&nbsp;</td>
@@ -52,7 +70,6 @@
       <td align="center"></td>
       <td align="center"><a href="print-umum.php" class="btn btn-danger" name="cetak">DOWNLOAD</a>&nbsp;(Gunakan menu Download, apabila ingin mencetak Nomer Antrian Anda)</td>
   </tr>
-
   </table>
-
-</body>
+  </body>
+</html>

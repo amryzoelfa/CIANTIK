@@ -34,55 +34,28 @@ class Pasien extends CI_Controller
         $data['jumlahAGigi'] = $this->Dashboard_model->getAntrianGigi();
         $this->template->tampil('Pasien/pAntrian_view', $data);
     }
-
-    public function CetakUmum()
-    {
-        $data['umum'] = $this->Pasien_model->getCetak()->result_array();
-        // var_dump($data);die();
-        $this->template->tampil('Pasien/pCetakUmum_view', $data);
-    }
-
-    public function CetakGigi()
-    {
-        $data['gigi'] = $this->Pasien_model->getCetak()->result_array();
-        // var_dump($data);die();
-        $this->template->tampil('Pasien/pCetakGigi_view', $data);
-    }
-
     public function ambilUmum()
     {
         $data['ambil'] = $this->Pasien_model->insertUmum();
+        $data['antrian'] = $this->Pasien_model->cetakUmum();
         $this->load->view('Pasien/pCetakUmum_view', $data);
     }
 
     public function ambilGigi()
     {
         $data['ambil'] = $this->Pasien_model->insertGigi();
-        $this->load->view('Pasien/pCetakUmum_view', $data);
+        $data['antrian'] = $this->Pasien_model->cetakGigi();
+        $this->load->view('Pasien/pCetakGigi_view', $data);
     }
+    public function print(){
+         ob_start();
+        $this->load->view('Admin/print', $data);
+        $html = ob_get_contents();
+        ob_end_clean();
 
-    public function insertUmum()
-    {
-        $id_user = $this->session->userdata("session_id");
-        $tanggal = date("Y-m-d");
-        $antrian = $this->tambahUmum();
-        $data = array(
-            'id_user' => $id_user,
-            'id_poli' => 1,
-            'tanggal' => $tanggal,
-            'no_antrian' => $antrian,
-            'id_status_periksa' => 1,
-            'id_status_obat' => 1
-        );
-        $this->Pasien_model->input_umum($data, 'tb_periksa');
-        redirect('Pasien/CetakUmum');
-    }
-
-    public function tambahUmum()
-    {
-        $db = $this->Pasien_model->tambahUmum();
-        $nomor = substr($db, 2, 3);
-        $antrian = (int) $nomor + 1;
-        return $antrian;
+        require_once('./assets/plugin/html2pdf/html2pdf.class.php');
+        $pdf = new HTML2PDF('L', 'A4', 'en');
+        $pdf->WriteHTML($html);
+        $pdf->Output('Data Transaksi.pdf', 'D');
     }
 }

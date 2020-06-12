@@ -63,8 +63,9 @@
   <?php } ?>
   <tr>
     <td>&nbsp;</td>
-    <td align="center"><?php $tanggal = date("d-m-Y h:i:s");
-                        echo $tanggal;  ?></td>
+    <td align="center"><?php date_default_timezone_set('Asia/Jakarta');
+                        echo date('d-m-Y H:i:s');
+                        ?></td>
     <td>&nbsp;</td>
 
   </tr>

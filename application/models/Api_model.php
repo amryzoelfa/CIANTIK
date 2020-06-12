@@ -70,4 +70,8 @@ class Api_model extends CI_Model
         $query = $this->db->get("");
         return $query;
     }
+    function getProfile($id)
+    {
+        return $this->db->get_where('tb_user',['id_user'=>$id]);
+    }
 }

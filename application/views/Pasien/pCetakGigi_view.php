@@ -84,7 +84,7 @@
   <tr>
     <td align="center"><a href="<?php echo site_url() . 'Pasien/Antrian' ?>" class="btn btn-primary" name="kembali">KEMBALI</a></td>
     <td align="center"></td>
-    <td align="center"><a href="<?php echo site_url() . 'Pasien/printUmum' ?>" class="btn btn-danger" name="cetak">DOWNLOAD</a>&nbsp;(Gunakan menu Download, apabila ingin mencetak Nomer Antrian Anda)</td>
+    <td align="center"><a href="<?php echo site_url() . 'Pasien/printGigi' ?>" class="btn btn-danger" name="cetak">DOWNLOAD</a>&nbsp;(Gunakan menu Download, apabila ingin mencetak Nomer Antrian Anda)</td>
   </tr>
   </table>
 </body>

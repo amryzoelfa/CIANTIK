@@ -32,6 +32,8 @@ class Pasien extends CI_Controller
         $data['jumlahGigi'] = $this->Pasien_model->getJGigi()->row_array();
         $data['jumlahAUmum'] = $this->Dashboard_model->getAntrianUmum();
         $data['jumlahAGigi'] = $this->Dashboard_model->getAntrianGigi();
+        $data['selesaiUmum'] = $this->Pasien_model->selesaiUmum()->row_array();
+        $data['selesaiGigi'] = $this->Pasien_model->selesaiGigi()->row_array();
         $this->template->tampil('Pasien/pAntrian_view', $data);
     }
     public function ambilUmum()
@@ -47,15 +49,32 @@ class Pasien extends CI_Controller
         $data['antrian'] = $this->Pasien_model->cetakGigi();
         $this->load->view('Pasien/pCetakGigi_view', $data);
     }
-    public function print(){
-         ob_start();
-        $this->load->view('Admin/print', $data);
+
+    public function printUmum()
+    {
+        $data['antrian'] = $this->Pasien_model->cetakUmum();
+        ob_start();
+        $this->load->view('Pasien/pPrintUmum', $data);
         $html = ob_get_contents();
         ob_end_clean();
 
         require_once('./assets/plugin/html2pdf/html2pdf.class.php');
-        $pdf = new HTML2PDF('L', 'A4', 'en');
+        $pdf = new HTML2PDF('P', 'A4', 'en');
         $pdf->WriteHTML($html);
-        $pdf->Output('Data Transaksi.pdf', 'D');
+        $pdf->Output('Antrian Anda.pdf', 'D');
+    }
+
+    public function printGigi()
+    {
+        $data['antrian'] = $this->Pasien_model->cetakGigi();
+        ob_start();
+        $this->load->view('Pasien/pPrintGigi', $data);
+        $html = ob_get_contents();
+        ob_end_clean();
+
+        require_once('./assets/plugin/html2pdf/html2pdf.class.php');
+        $pdf = new HTML2PDF('P', 'A4', 'en');
+        $pdf->WriteHTML($html);
+        $pdf->Output('Antrian Anda.pdf', 'D');
     }
 }

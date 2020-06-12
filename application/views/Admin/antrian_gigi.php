@@ -24,10 +24,9 @@
             <th>Nama</th>
             <th>Status Periksa</th>
             <th>Status Obat</th>
-            <!-- <th>Tindakan</th> -->
+
           </tr>
         </tfoot>
-
         <tbody>
           <?php
           if (!empty($antrian)) {
@@ -41,23 +40,26 @@
                 <td><?php if ($data->id_status_periksa == 1) {
                       echo "Belum";
                     } elseif ($data->id_status_periksa == 2) {
-                      echo "Proses";
-                    } else {
                       echo "Sudah";
+                    } else {
+                      echo "Proses";
                     } ?></td>
                 <td><?php if ($data->id_status_obat == 1) {
                       echo "Belum";
                     } elseif ($data->id_status_obat == 2) {
-                      echo "Proses";
-                    } else {
                       echo "Sudah";
+                    } else {
+                      echo "Proses";
                     } ?></td>
-                <!-- <td><a href="edit-user.php?id=<?php echo $data['id_user']; ?>" class="btn btn-warning" name="edit-user"><i class="fas fa-edit"></i></a><a href="hapus-dpasien.php?id=<?php echo $data['id_user']; ?>" onclick="return confirm('Apakah anda yakin untuk menghapus data user?')" class="btn btn-danger" name="hapus-user"><i class="fas fa-trash"></i></a></td> -->
-              </tr><?php
-                  }
-                } ?>
+              </tr>
+          <?php
+            }
+          }
+          ?>
         </tbody>
       </table>
     </div>
   </div>
 </div>
+
+<!-- /.container-fluid -->

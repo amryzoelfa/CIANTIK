@@ -67,7 +67,8 @@ class Pasien_model extends CI_Model
         $query = "INSERT INTO tb_periksa(id_periksa, id_user, id_poli, tanggal, no_antrian, id_status_periksa, id_status_obat) VALUES ('', '$id_user', '1', '$tanggal', '$antrian', '1','1')";
         return $this->db->query($query);
     }
-    public function cetakUmum(){
+    public function cetakUmum()
+    {
         $id_user = $this->session->userdata("session_id");
         $query = "SELECT MAX(no_antrian) as umum from tb_periksa where tanggal = CURRENT_DATE() and id_user = '$id_user' and id_poli = 1";
         return $this->db->query($query)->result();
@@ -102,9 +103,22 @@ class Pasien_model extends CI_Model
         $query = "INSERT INTO tb_periksa(id_periksa, id_user, id_poli, tanggal, no_antrian, id_status_periksa, id_status_obat) VALUES ('', '$id_user', '2', '$tanggal', '$antrian', '1','1')";
         return $this->db->query($query);
     }
-    public function cetakGigi(){
+    public function cetakGigi()
+    {
         $id_user = $this->session->userdata("session_id");
         $query = "SELECT MAX(no_antrian) as gigi from tb_periksa where tanggal = CURRENT_DATE() and id_user = '$id_user' and id_poli = 2";
         return $this->db->query($query)->result();
+    }
+
+    public function selesaiUmum()
+    {
+        $query = "SELECT COUNT(no_antrian) as sUmum from tb_periksa where tanggal = CURRENT_DATE() and id_status_periksa=2 and id_poli = 1";
+        return $this->db->query($query);
+    }
+
+    public function selesaiGigi()
+    {
+        $query = "SELECT COUNT(no_antrian) as sGigi from tb_periksa where tanggal = CURRENT_DATE() and id_status_periksa=2 and id_poli = 2";
+        return $this->db->query($query);
     }
 }

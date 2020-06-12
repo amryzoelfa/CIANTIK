@@ -62,13 +62,13 @@ class Dashboard_model extends CI_Model
 
     public function getAntrianUmum()
     {
-        $query = "SELECT COUNT(*) as total_umum FROM tb_periksa WHERE tanggal=CURRENT_DATE() AND id_poli=1";
+        $query = "SELECT COUNT(*) as total_umum FROM tb_periksa WHERE tanggal=CURRENT_DATE() AND id_poli=1 AND id_status_periksa=1";
         return $this->db->query($query)->row_array();
     }
 
     public function getAntrianGigi()
     {
-        $query = "SELECT COUNT(*) as total_gigi FROM tb_periksa WHERE tanggal=CURRENT_DATE() AND id_poli=2";
+        $query = "SELECT COUNT(*) as total_gigi FROM tb_periksa WHERE tanggal=CURRENT_DATE() AND id_poli=2 AND id_status_periksa=1";
         return $this->db->query($query)->row_array();
     }
 }

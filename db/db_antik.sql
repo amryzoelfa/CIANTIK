@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Jun 2020 pada 15.31
+-- Waktu pembuatan: 12 Jun 2020 pada 12.03
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.2
 
@@ -72,8 +72,12 @@ CREATE TABLE `tb_periksa` (
 --
 
 INSERT INTO `tb_periksa` (`id_periksa`, `id_user`, `id_poli`, `tanggal`, `no_antrian`, `tensi_darah`, `riwayat_penyakit`, `gejala`, `diagnosa`, `tindakan`, `resep_obat`, `keterangan`, `id_status_periksa`, `id_status_obat`) VALUES
-(1, 2, 1, '2020-06-04', 1, '120/100', 'DIABETES', 'PUSING, MUAL', 'DARA TINGGI', '-', 'DIABETASOL', '2X1 SELETALH MAKAN', 2, 1),
-(2, 2, 1, '2020-06-05', 1, '120/60', 'DEMAM BERDARAH', 'DEMAM TINGGI, BATUK, MENGGIGIL', 'GEJALA TIFES', 'SUNTIK', 'BEATASOL', '3X1 SETELAH MAKAN', 2, 1);
+(1, 2, 1, '2020-06-04', 1, '120/100', 'DIABETES', 'PUSING, MUAL', 'DARA TINGGI', '-', 'DIABETASOL', '2X1 SETELAH MAKAN', 2, 1),
+(2, 2, 1, '2020-06-05', 1, '120/60', 'DEMAM BERDARAH', 'DEMAM TINGGI, BATUK, MENGGIGIL', 'GEJALA TIFES', 'SUNTIK', 'BEATASOL', '3X1 SETELAH MAKAN', 2, 1),
+(3, 2, 1, '2020-06-11', 1, '120/100', 'TUMOR LESTE', 'PANAS DINGIN, DEMAM, BATUK, PILEK, FLU', 'COVID-19', 'RAPID TEST', 'BELUM ADA VAKSIN', 'SEMOGA CEPAT ADA VAKSIN YA.. AMIN', 2, 2),
+(4, 6, 1, '2020-06-11', 2, '120/90', 'GAGAL SBMPTN', 'MUAL-MUAL, STRESS, TERIAK-TERIAK SENDIRI', 'BUTUH LIBURAN', 'SUNTIK', 'PARASETAMOL, BODREX', '4X1 SETELAH MAKAN', 2, 1),
+(5, 7, 2, '2020-06-11', 1, '120/100', 'PANAS DALAM', 'GIGI BERDARAH, NYERI PADA GIGI DEPAN', 'BANYAK KARANG DISELA-SELA GIGI', 'BERSIHKAN KARANG GIGI', '-', '-', 2, 1),
+(6, 2, 1, '2020-06-12', 1, '120/110', 'FLU BULUNG', 'PANAS, DEMAM, BATUK', 'COVID-19', 'RAPID TEST', 'DOAKAN SEMOGA SEGERA ADA VAKSIN', 'AMIN', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -142,13 +146,13 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`id_user`, `id_akses`, `no_identitas`, `nama`, `jenis_kelamin`, `tempat_lahir`, `tanggal_lahir`, `alamat`, `pekerjaan`, `no_hp`, `email`, `username`, `password`, `foto`) VALUES
-(1, 1, '503/A.0/0066.ADM/35', 'Amry Zulfa Al Husna', 'L', 'Kediri', '1999-08-17', 'Dsn. Bulurejo Plosoklaten Kediri', 'Swasta', '082234121604', 'amryzoelfa@gmail.com', 'admin', '202cb962ac59075b964b07152d234b70', ''),
-(2, 2, 'E31181295', 'An Nissa Safitri', 'P', 'Lumajang', '1999-12-23', 'Tempeh, Lumajang', 'Mahasiswa', '085895014535', 'annisa@gmail.com', 'E31181295', 'caf1a3dfb505ffed0d024130f58c5cfa', ''),
-(3, 3, '503/A.1/0066.DU/35', 'dr. Anindita Pramadyasiwi', 'P', 'Jember', '1989-05-10', 'Jl. Mastrip, Jember', 'PNS', '085111333555', '', 'dokteru', '202cb962ac59075b964b07152d234b70', ''),
-(4, 4, '504/B.1/0066.DU/35/1', 'drg. Fariz Gustafianto', 'L', 'Jember', '1995-06-06', 'Jl. Kalimantan, Jember', 'PNS', '085522663311', '', 'dokterg', '202cb962ac59075b964b07152d234b70', ''),
-(5, 5, '501/P.1/0066.TK/35/1', 'Wulan Cahya Wandani', 'P', 'Situbondo', '1999-08-22', 'Jl. Masing - masing, Situbondo', 'PNS', '085708514574', '', 'apoteker', '202cb962ac59075b964b07152d234b70', ''),
-(6, 2, 'E31181373', 'Ratna Dewi Safitri', 'P', 'Lumajang', '1999-12-07', 'Jl. in Aja, Lumajang', 'Mahasiswa', '085607936355', '', 'E31181373', '202cb962ac59075b964b07152d234b70', ''),
-(7, 2, 'E31180980', 'Afif Faris Hudaifi', 'L', 'Ponorogo', '1999-06-04', 'Jl. Khianat, Ponorogo', 'Mahasiswa', '089697020078', 'afif@gmail.com', 'E31180908', 'cdb1946709dd478c6ea260a4c1c0c54c', '');
+(1, 1, '503/A.0/0066.ADM/35', 'Amry Zulfa Al Husna', 'L', 'Kediri', '1999-08-17', 'Dsn. Bulurejo Plosoklaten Kediri', 'Swasta', '082234121604', 'amryzoelfa@gmail.com', 'admin', '21232f297a57a5a743894a0e4a801fc3', '3dfefb20bafdad8667e05ff0c31cff97.jpg'),
+(2, 2, 'E31181295', 'An Nissa Safitri', 'P', 'Lumajang', '1999-12-23', 'Tempeh, Lumajang', 'Mahasiswa', '085895014535', 'annisa@gmail.com', 'E31181295', '202cb962ac59075b964b07152d234b70', '0ad248db6661d63a485ec6172fb7f237.jpg'),
+(3, 3, '503/A.1/0066.DU/35', 'dr. Anindita Pramadyasiwi', 'P', 'Jember', '1989-05-10', 'Jl. Mastrip, Jember', 'PNS', '085111333555', '', 'drumum', '202cb962ac59075b964b07152d234b70', '7f06502c4a6b49998af85d24efc5e0a6.jpg'),
+(4, 4, '504/B.2/0076.DRG/35', 'drg. Fariz Gustafianto', 'L', 'Jember', '1995-06-06', 'Jl. Kalimantan, Jember', 'PNS', '085522663311', '', 'drgigi', '202cb962ac59075b964b07152d234b70', '5561f012f2b20f2d854879b0f37d9101.jpg'),
+(5, 5, '501/P.1/0066.TK/35/1', 'Wulan Cahya Wandani', 'P', 'Situbondo', '1999-08-22', 'Jl. Masing - masing, Situbondo', 'PNS', '085708514574', '', 'apoteker', '202cb962ac59075b964b07152d234b70', '00794627fa22d188c1b1db212fa94064.jpg'),
+(6, 2, 'E31181373', 'Ratna Dewi Safitri', 'P', 'Lumajang', '1999-12-07', 'Jl. in Aja, Lumajang', 'Mahasiswa', '085607936355', '', 'E31181373', '202cb962ac59075b964b07152d234b70', '00ec8f8d9934eb527f48aa2b4de7c47d.jpg'),
+(7, 2, 'E31180980', 'Afif Faris Hudaifi', 'L', 'Ponorogo', '1999-06-04', 'Jl. Khianat, Ponorogo', 'Mahasiswa', '089697020078', 'afif@gmail.com', 'E31180908', '202cb962ac59075b964b07152d234b70', '');
 
 --
 -- Indexes for dumped tables
@@ -203,7 +207,7 @@ ALTER TABLE `tb_akses`
 -- AUTO_INCREMENT untuk tabel `tb_periksa`
 --
 ALTER TABLE `tb_periksa`
-  MODIFY `id_periksa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_periksa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_poli`

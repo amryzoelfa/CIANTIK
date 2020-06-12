@@ -51,6 +51,16 @@
                                 <td><a href="<?php echo site_url() . 'Pasien/ambilUmum' ?>" class="btn btn btn-danger" name="ambil" style="width: 100%" value="submit">Ambil Antrian Anda</a></td>
                                 <td>&nbsp;</td>
                             </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <font color="white"><i>*Antrian selesai diperiksa :</i> A - <?= $selesaiUmum['sUmum']; ?></font>
+                                </td>
+                            </tr>
                         </table>
                     </div>
                 </form>
@@ -103,6 +113,16 @@
                                 <td>&nbsp;</td>
                                 <td><a href="<?php echo site_url() . 'Pasien/ambilGigi' ?>" class="btn btn btn-danger" name="ambil2" style="width: 100%" value="submit">Ambil Antrian Anda</a></td>
                                 <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <font color="white"><i>*Antrian selesai diperiksa :</i> B - <?= $selesaiGigi['sGigi']; ?></font>
+                                </td>
                             </tr>
                         </table>
                     </div>

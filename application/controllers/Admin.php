@@ -82,7 +82,7 @@ class Admin extends CI_Controller
     public function antrian_gigi()
     {
         $data['antrian'] = $this->Admin_model->getAntrianGigi();
-        $this->template->tampil('Admin/antrian_gigi');
+        $this->template->tampil('Admin/antrian_gigi', $data);
     }
 
     public function Laporan()

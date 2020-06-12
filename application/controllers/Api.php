@@ -67,4 +67,10 @@ class Api extends CI_Controller
         $data = $this->Api_model->getAntrianGigi();
         echo json_encode($data->row_array());
     }
+    public function Profile($id)
+    {
+        $data = $this->Api_model->getProfile($id);
+        header('content-type: application/json');
+        echo json_encode($data->result_array());
+    }
 }

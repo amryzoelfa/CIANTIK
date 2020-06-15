@@ -73,4 +73,13 @@ class Api extends CI_Controller
         header('content-type: application/json');
         echo json_encode($data->result_array());
     }
+    public function gantipass(){
+        $paslam = $this->input->post('paslam');
+        $cek = $this->Api_model->getProfile($id)->result();
+            if($paslam != $cek['password']){
+                $result["message"] = "Password Lama Salah!";
+            }else{
+                $this->Api_model->updatepass();
+            }
+    }
 }

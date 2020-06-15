@@ -78,7 +78,7 @@ class Api_model extends CI_Model
         $data = [
             'password' => $this->input->post('pasbar'),
         ];
-        $this->db->get_where('id_user'=>$id);
+        $this->db->where('id_user',$id);
         $this->db->update('tb_user',$data);
     }
 }

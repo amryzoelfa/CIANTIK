@@ -41,6 +41,7 @@ class Api_model extends CI_Model
         $this->db->from('tb_periksa');
         $this->db->join('tb_user', 'tb_periksa.id_user=tb_user.id_user');
         $this->db->where('tb_periksa.id_status_periksa', 2);
+        $this->db->where('tb_periksa.id_user',2);
         $query = $this->db->get("");
         return $query;
     }

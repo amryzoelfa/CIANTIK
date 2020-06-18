@@ -53,6 +53,7 @@ class Api extends CI_Controller
     public function Riwayat()
     {
         $data = $this->Api_model->getRiwayat();
+        header('content-type: application/json');
         echo json_encode($data->result_array());
     }
 

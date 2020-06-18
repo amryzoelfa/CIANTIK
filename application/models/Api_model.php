@@ -45,6 +45,17 @@ class Api_model extends CI_Model
         return $query;
     }
 
+    function getDokter()
+    {
+        // $this->db->select('*');
+        // $this->db->from('tb_user');
+        $this->db->join('tb_akses', 'tb_user.id_akses=tb_akses.id_akses');
+        // $this->db->where('tb_user.id_akses', 3);
+        // $this->db->where('tb_user.id_akses', 4);
+        $query = $this->db->get("tb_user", 2, 2);
+        return $query;
+    }
+
     function getAntrianUmum()
     {
         $this->db->select('no_antrian');
@@ -70,15 +81,102 @@ class Api_model extends CI_Model
         $query = $this->db->get("");
         return $query;
     }
+
+    function jumlahUmum()
+    {
+        $this->db->select('COUNT(no_antrian)');
+        $this->db->from('tb_periksa');
+        $this->db->where('tanggal', 'NOW()');
+        $this->db->where('id_poli', 1);
+        $query = $this->db->get("");
+        return $query;
+    }
+
+    function jumlahGigi()
+    {
+        $this->db->select('COUNT(no_antrian)');
+        $this->db->from('tb_periksa');
+        $this->db->where('tanggal', 'NOW()');
+        $this->db->where('id_poli', 2);
+        $query = $this->db->get("");
+        return $query;
+    }
+
     function getProfile($id)
     {
-        return $this->db->get_where('tb_user',['id_user'=>$id]);
+        return $this->db->get_where('tb_user', ['id_user' => $id]);
     }
-    function updatepass($id){
+
+    function updatepass($id)
+    {
         $data = [
             'password' => $this->input->post('pasbar'),
         ];
-        $this->db->where('id_user',$id);
-        $this->db->update('tb_user',$data);
+        $this->db->where('id_user', $id);
+        $this->db->update('tb_user', $data);
+    }
+
+    public function tambahUmum()
+    {
+        $tanggal = date('Y-m-d');
+        $this->db->select("COUNT(no_antrian) AS antrianUmum");
+        $this->db->where('tanggal', $tanggal);
+        $this->db->where('id_poli', 1);
+        $query = $this->db->get('tb_periksa');
+        if ($query->num_rows() <> 0) {
+            //cek kode jika telah tersedia    
+            $data = $query->row();
+            $noUmum = intval($data->antrianUmum) + 1;
+        } else {
+            $noUmum = 1;  //cek jika kode belum terdapat pada table
+        }
+        return $noUmum;
+        $data = $this->db->get();
+        if ($data->num_rows() <> 0) {
+            return $data->result_array();
+        } else {
+            return false;
+        }
+    }
+
+    public function insertUmum()
+    {
+        $id_user = $this->session->userdata("session_id");
+        $tanggal = date("Y-m-d");
+        $antrian = $this->tambahUmum();
+        $query = "INSERT INTO tb_periksa(id_periksa, id_user, id_poli, tanggal, no_antrian, id_status_periksa, id_status_obat) VALUES ('', '$id_user', '1', '$tanggal', '$antrian', '1','1')";
+        return $this->db->query($query);
+    }
+
+    public function tambahGigi()
+    {
+        $tanggal = date('Y-m-d');
+        $this->db->select("COUNT(no_antrian) AS antrianGigi");
+        $this->db->where('tanggal', $tanggal);
+        $this->db->where('id_poli', 2);
+        $query = $this->db->get('tb_periksa');
+        if ($query->num_rows() <> 0) {
+            //cek kode jika telah tersedia    
+            $data = $query->row();
+            $noGigi = intval($data->antrianGigi) + 1;
+        } else {
+            $noGigi = 1;  //cek jika kode belum terdapat pada table
+        }
+        return $noGigi;
+        $data = $this->db->get();
+        if ($data->num_rows() <> 0) {
+            return $data->result_array();
+        } else {
+            return false;
+        }
+    }
+
+    public function insertGigi()
+    {
+        $id_user = $this->session->userdata("session_id");
+        $tanggal = date("Y-m-d");
+        $antrian = $this->tambahGigi();
+        $query = "INSERT INTO tb_periksa(id_periksa, id_user, id_poli, tanggal, no_antrian, id_status_periksa, id_status_obat) VALUES ('', '$id_user', '2', '$tanggal', '$antrian', '1','1')";
+        return $this->db->query($query);
     }
 }

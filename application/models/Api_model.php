@@ -74,4 +74,21 @@ class Api_model extends CI_Model
     {
         return $this->db->get_where('tb_user',['id_user'=>$id]);
     }
+
+    function getUserById($id)
+    {
+        return $this->db->get_where('tb_user', ['id_user' => $id])->row_array();
+    }
+
+    function updatePassword($id, $password_baru){
+        $data = array(
+            'password' => $password_baru
+        );
+
+        return $this->db->update('tb_user', $data, ['id_user' => $id]);
+    }
+
+    function updateProfilById($id, $data){
+        return $this->db->update('tb_user', $data, ['id_user' => $id]);
+    }
 }

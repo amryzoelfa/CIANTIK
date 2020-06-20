@@ -3,18 +3,6 @@
 <head>
 
     <title>Cetak PDF</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            table-layout: fixed;
-            width: 630px;
-        }
-
-        table td {
-            word-wrap: break-word;
-            width: 20%;
-        }
-    </style>
     <!-- BOOTSTRAP STYLES-->
     <link href="<?php echo base_url('assets/css/bootstrap.css') ?>" rel="stylesheet" />
     <!-- FONTAWESOME STYLES-->
@@ -66,8 +54,9 @@
     <?php } ?>
     <tr>
         <td>&nbsp;</td>
-        <td align="center"><?php $tanggal = date("d-m-Y h:i:s");
-                            echo $tanggal;  ?></td>
+        <td align="center"><?php date_default_timezone_set('Asia/Jakarta');
+                                echo date('d-m-Y H:i:s');
+                              ?></td>
         <td>&nbsp;</td>
     </tr>
     <tr>

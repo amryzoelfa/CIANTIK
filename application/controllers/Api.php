@@ -46,13 +46,20 @@ class Api extends CI_Controller
     {
         $username = $this->input->post('username');
         $password = $this->input->post('password');
-        $result = $this->Api_model->loginApi($username, $password);
+        $result = $this->Api_model->loginApi($username, $password)->result();
         echo json_encode($result);
     }
 
     public function Riwayat()
     {
         $data = $this->Api_model->getRiwayat();
+        header('content-type: application/json');
+        echo json_encode($data->result_array());
+    }
+
+    public function Dokter()
+    {
+        $data = $this->Api_model->getDokter();
         echo json_encode($data->result_array());
     }
 
@@ -67,6 +74,7 @@ class Api extends CI_Controller
         $data = $this->Api_model->getAntrianGigi();
         echo json_encode($data->row_array());
     }
+
     public function Profile($id)
     {
         $data = $this->Api_model->getProfile($id);
@@ -175,5 +183,40 @@ class Api extends CI_Controller
             header('content-type: application/json');
             echo json_encode($response);   
         }
+    }
+
+    public function gantipass()
+    {
+        $paslam = $this->input->post('paslam');
+        $cek = $this->Api_model->getProfile($id)->result();
+        if ($paslam != $cek['password']) {
+            $result["message"] = "Password Lama Salah!";
+        } else {
+            $this->Api_model->updatepass();
+        }
+    }
+
+    public function insertUmum()
+    {
+        $data = $this->Api_model->insertUmum();
+        echo json_encode($data->result_array());
+    }
+
+    public function insertGigi()
+    {
+        $data = $this->Api_model->insertGigi();
+        echo json_encode($data->result_array());
+    }
+
+    public function jumlahUmum()
+    {
+        $data = $this->Api_model->jumlahUmum();
+        echo json_encode($data->result_array());
+    }
+
+    public function jumlahGigi()
+    {
+        $data = $this->Api_model->jumlahGigi();
+        echo json_encode($data->result_array());
     }
 }

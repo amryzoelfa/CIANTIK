@@ -45,7 +45,7 @@ class Api extends CI_Controller
     public function LoginApi()
     {
         $username = $this->input->post('username');
-        $password = $this->input->post('password');
+        $password = md5($this->input->post('password'));
         $result = $this->Api_model->loginApi($username, $password)->result();
         echo json_encode($result);
     }
@@ -60,6 +60,7 @@ class Api extends CI_Controller
     public function Dokter()
     {
         $data = $this->Api_model->getDokter();
+        header('content-type: application/json');
         echo json_encode($data->result_array());
     }
 

@@ -37,19 +37,18 @@ class Api_model extends CI_Model
 
     function getRiwayat()
     {
-        $this->db->select('tanggal,diagnosa,tindakan,resep_obat, ket_poli');
+        $this->db->select('tanggal,id_poli,diagnosa,tindakan,resep_obat');
         $this->db->from('tb_periksa');
         $this->db->join('tb_user', 'tb_periksa.id_user=tb_user.id_user');
-        $this->db->join('tb_poli', 'tb_periksa.id_poli=tb_poli.id_poli');
         $this->db->where('tb_periksa.id_status_periksa', 2);
-        $this->db->where('tb_periksa.id_user', 2);
+        $this->db->where('tb_periksa.id_user',2);
         $query = $this->db->get("");
         return $query;
     }
 
     function getDokter()
     {
-        $this->db->select('nama, jenis_kelamin, no_hp, alamat, foto, ket_akses');
+        // $this->db->select('*');
         // $this->db->from('tb_user');
         $this->db->join('tb_akses', 'tb_user.id_akses=tb_akses.id_akses');
         // $this->db->where('tb_user.id_akses', 3);

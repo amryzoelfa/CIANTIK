@@ -45,9 +45,8 @@ class Api extends CI_Controller
     public function LoginApi()
     {
         $username = $this->input->post('username');
-        $password = md5($this->input->post('password'));
-        $result = $this->Api_model->loginApi($username, $password)->result_array();
-        header('content-type: application/json');
+        $password = $this->input->post('password');
+        $result = $this->Api_model->loginApi($username, $password)->result();
         echo json_encode($result);
     }
 
@@ -61,21 +60,18 @@ class Api extends CI_Controller
     public function Dokter()
     {
         $data = $this->Api_model->getDokter();
-        header('content-type: application/json');
         echo json_encode($data->result_array());
     }
 
     public function antrianUmum()
     {
         $data = $this->Api_model->getAntrianUmum();
-        header('content-type: application/json');
         echo json_encode($data->row_array());
     }
 
     public function antrianGigi()
     {
         $data = $this->Api_model->getAntrianGigi();
-        header('content-type: application/json');
         echo json_encode($data->row_array());
     }
 

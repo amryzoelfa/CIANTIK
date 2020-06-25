@@ -79,7 +79,110 @@ class Api extends CI_Controller
     {
         $data = $this->Api_model->getProfile($id);
         header('content-type: application/json');
-        echo json_encode($data->result_array());
+        echo json_encode($data->result_array());    
+    }
+
+    public function Password()
+    {
+        if($this->input->post('password_lama') && $this->input->post('id_user') && $this->input->post('password_baru')){
+            $id_user = $this->input->post('id_user');
+            $password_lama = $this->input->post('password_lama');
+            $password_baru = $this->input->post('password_baru');
+
+            $user = $this->Api_model->getUserById($id_user);
+
+            if($user){
+                if (md5($password_lama) == $user['password']) {
+
+                    $password_baru = md5($password_baru);
+                    
+                    if($this->Api_model->updatePassword($id_user, $password_baru)) {
+                        $response = array(
+                            'status' => true, 
+                            'message' => 'berhasil update password'
+                        );
+            
+                        header('content-type: application/json');
+                        echo json_encode($response);   
+                    } else {
+                        $response = array(
+                            'status' => false, 
+                            'message' => 'gagal update password'
+                        );
+            
+                        header('content-type: application/json');
+                        echo json_encode($response);   
+                    }
+
+                } else {
+                    $response = array(
+                        'status' => false, 
+                        'message' => 'password lama salah'
+                    );
+        
+                    header('content-type: application/json');
+                    echo json_encode($response);   
+                }
+            
+            }else{
+                $response = array(
+                    'status' => false, 
+                    'message' => 'user tidak ditemukan'
+                );
+    
+                header('content-type: application/json');
+                echo json_encode($response);    
+            }
+            
+        } else {
+            $response = array(
+                'status' => false, 
+                'message' => 'input tidak sesuai'
+            );
+
+            header('content-type: application/json');
+            echo json_encode($response);    
+        }
+    }
+
+    public function updateProfil(){
+        if($this->input->post('id_user') && $this->input->post('nama') && $this->input->post('alamat') && $this->input->post('tempat_lahir') && $this->input->post('tanggal_lahir') && $this->input->post('jenis_kelamin')){
+            $id_user = $this->input->post('id_user');
+
+            $data = array(
+                'nama' => $this->input->post('nama'),
+                'alamat' => $this->input->post('alamat'),
+                'jenis_kelamin' => $this->input->post('jenis_kelamin'),
+                'tempat_lahir' => $this->input->post('tempat_lahir'),
+                'tanggal_lahir' => $this->input->post('tanggal_lahir')
+            );
+
+            if($this->Api_model->updateProfilById($id_user, $data)){
+                $response = array(
+                    'status' => true, 
+                    'message' => 'Berhasil update profil'
+                );
+    
+                header('content-type: application/json');
+                echo json_encode($response);   
+            } else {
+                $response = array(
+                    'status' => false, 
+                    'message' => 'Gagal update profil'
+                );
+    
+                header('content-type: application/json');
+                echo json_encode($response);   
+            }
+        } else {
+            $response = array(
+                'status' => false, 
+                'message' => 'input tidak sesuai'
+            );
+
+            header('content-type: application/json');
+            echo json_encode($response);   
+        }
     }
 
     public function gantipass()

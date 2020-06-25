@@ -180,21 +180,4 @@ class Api_model extends CI_Model
         $query = "INSERT INTO tb_periksa(id_periksa, id_user, id_poli, tanggal, no_antrian, id_status_periksa, id_status_obat) VALUES ('', '$id_user', '2', '$tanggal', '$antrian', '1','1')";
         return $this->db->query($query);
     }
-
-    function getUserById($id)
-    {
-        return $this->db->get_where('tb_user', ['id_user' => $id])->row_array();
-    }
-
-    function updatePassword($id, $password_baru){
-        $data = array(
-            'password' => $password_baru
-        );
-
-        return $this->db->update('tb_user', $data, ['id_user' => $id]);
-    }
-
-    function updateProfilById($id, $data){
-        return $this->db->update('tb_user', $data, ['id_user' => $id]);
-    }
 }

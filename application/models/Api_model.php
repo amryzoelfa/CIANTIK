@@ -9,7 +9,7 @@ class Api_model extends CI_Model
 
     function loginApi($username, $password)
     {
-        $this->db->select('*');
+        $this->db->select('id_user, id_akses, no_identitas, nama, alamat, username, password, foto'); //id_user, id_akses, no_identitas, nama, jenis_kelamin, tempat_lahir, tanggal_lahir, alamat, no_hp, username, password, foto
         $this->db->from('tb_user');
         $this->db->where('username', $username);
         $this->db->where('password', $password);
@@ -37,11 +37,14 @@ class Api_model extends CI_Model
 
     function getRiwayat()
     {
-        $this->db->select('tanggal,id_poli,diagnosa,tindakan,resep_obat');
+        //$id_user = $this->session->userdata("session_id");
+        $this->db->select('*');
         $this->db->from('tb_periksa');
         $this->db->join('tb_user', 'tb_periksa.id_user=tb_user.id_user');
+        $this->db->join('tb_poli', 'tb_periksa.id_poli=tb_poli.id_poli');
         $this->db->where('tb_periksa.id_status_periksa', 2);
-        $this->db->where('tb_periksa.id_user',2);
+        //$this->db->where('id_user', $id_user);
+        //$this->db->where('tb_periksa.id_user', 2);
         $query = $this->db->get("");
         return $query;
     }
@@ -186,7 +189,8 @@ class Api_model extends CI_Model
         return $this->db->get_where('tb_user', ['id_user' => $id])->row_array();
     }
 
-    function updatePassword($id, $password_baru){
+    function updatePassword($id, $password_baru)
+    {
         $data = array(
             'password' => $password_baru
         );
@@ -194,7 +198,41 @@ class Api_model extends CI_Model
         return $this->db->update('tb_user', $data, ['id_user' => $id]);
     }
 
-    function updateProfilById($id, $data){
+    function updateProfilById($id, $data)
+    {
         return $this->db->update('tb_user', $data, ['id_user' => $id]);
+    }
+
+    function getListUmum()
+    {
+        //SELECT * FROM tb_periksa, tb_user, tb_status, tb_poli WHERE tb_periksa.id_user=tb_user.id_user AND 
+        //tb_periksa.id_status_periksa=tb_status.id_status 
+        //AND tb_periksa.id_poli=tb_poli.id_poli AND tb_periksa.id_poli=1 AND tb_periksa.tanggal=CURRENT_DATE()
+        // $this->db->select('*');
+        // $this->db->from('tb_periksa');
+        // $this->db->join('tb_user', 'tb_periksa.id_user=tb_user.id_user');
+        // $this->db->join('tb_poli', 'tb_periksa.id_poli=tb_poli.id_poli');
+        // $this->db->join('tb_status', 'tb_periksa.id_status_periksa=tb_status.id_status');
+        // $this->db->where('tb_periksa.id_poli', 1);
+        // $this->db->where('tb_periksa.tanggal', 'CIRRENT_DATE()');
+        // $this->db->group_by('tb_periksa.id_periksa');
+        $query = "SELECT * FROM tb_periksa, tb_user, tb_status, tb_poli WHERE tb_periksa.id_user=tb_user.id_user AND tb_periksa.id_status_periksa=tb_status.id_status  AND tb_periksa.id_poli=tb_poli.id_poli AND tb_periksa.id_poli=1 AND tb_periksa.tanggal=CURRENT_DATE()";
+        return $this->db->query($query);
+        // return $query;
+    }
+
+    function getListGigi()
+    {
+        // $this->db->select('no_antrian, tanggal, nama, ket_status');
+        // $this->db->from('tb_periksa');
+        // $this->db->join('tb_user', 'tb_periksa.id_user=tb_user.id_user');
+        // $this->db->join('tb_status', 'tb_periksa.id_status_periksa=tb_status.id_status');
+        // $this->db->where('tb_periksa.id_poli', 2);
+        // $this->db->where('tb_periksa.tanggal', 'NOW()');
+        // $this->db->group_by('tb_periksa.id_periksa');
+        // $query = $this->db->get("");
+        // return $query;
+        $query = "SELECT * FROM tb_periksa, tb_user, tb_status, tb_poli WHERE tb_periksa.id_user=tb_user.id_user AND tb_periksa.id_status_periksa=tb_status.id_status  AND tb_periksa.id_poli=tb_poli.id_poli AND tb_periksa.id_poli=2 AND tb_periksa.tanggal=CURRENT_DATE()";
+        return $this->db->query($query);
     }
 }

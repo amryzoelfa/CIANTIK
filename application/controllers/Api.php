@@ -22,9 +22,9 @@ class Api extends CI_Controller
         echo json_encode($result);
     }
 
-    public function Riwayat()
+    public function Riwayat($id_user)
     {
-        $data = $this->Api_model->getRiwayat();
+        $data = $this->Api_model->getRiwayat($id_user);
         header('content-type: application/json');
         echo json_encode($data->result_array());
     }

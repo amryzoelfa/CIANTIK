@@ -7,6 +7,7 @@ class Api_model extends CI_Model
         parent::__construct();
     }
 
+    //Model Login
     function loginApi($username, $password)
     {
         $this->db->select('id_user, id_akses, no_identitas, nama, alamat, username, password, foto'); //id_user, id_akses, no_identitas, nama, jenis_kelamin, tempat_lahir, tanggal_lahir, alamat, no_hp, username, password, foto
@@ -35,29 +36,30 @@ class Api_model extends CI_Model
         return $query;
     }
 
-    function getRiwayat()
+    //Model Riwayat Pasien
+    function getRiwayat($id_user)
     {
-        //$id_user = $this->session->userdata("session_id");
         $this->db->select('*');
         $this->db->from('tb_periksa');
         $this->db->join('tb_user', 'tb_periksa.id_user=tb_user.id_user');
         $this->db->join('tb_poli', 'tb_periksa.id_poli=tb_poli.id_poli');
         $this->db->where('tb_periksa.id_status_periksa', 2);
-        //$this->db->where('id_user', $id_user);
-        //$this->db->where('tb_periksa.id_user', 2);
+        $this->db->where('tb_periksa.id_user', $id_user);
         $query = $this->db->get("");
         return $query;
     }
 
+    //Model Data Dokter
     function getDokter()
     {
         // $this->db->select('*');
         // $this->db->from('tb_user');
-        $this->db->join('tb_akses', 'tb_user.id_akses=tb_akses.id_akses');
+        //$this->db->join('tb_akses', 'tb_user.id_akses=tb_akses.id_akses');
         // $this->db->where('tb_user.id_akses', 3);
         // $this->db->where('tb_user.id_akses', 4);
-        $query = $this->db->get("tb_user", 2, 2);
-        return $query;
+        //$query = $this->db->get("tb_user", 2, 2);
+        $query = "SELECT * FROM tb_user JOIN tb_akses ON tb_user.id_akses=tb_akses.id_akses WHERE tb_user.id_akses=3 OR tb_user.id_akses=4";
+        return $this->db->query($query);
     }
 
     function getAntrianUmum()

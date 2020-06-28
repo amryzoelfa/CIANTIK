@@ -238,4 +238,12 @@ class Api_model extends CI_Model
         $query = "SELECT * FROM tb_periksa, tb_user, tb_status, tb_poli WHERE tb_periksa.id_user=tb_user.id_user AND tb_periksa.id_status_periksa=tb_status.id_status  AND tb_periksa.id_poli=tb_poli.id_poli AND tb_periksa.id_poli=2 AND tb_periksa.tanggal=CURRENT_DATE()";
         return $this->db->query($query);
     }
+    function jUmum(){
+        $query = "SELECT COUNT(tb_periksa.id_user) AS jumlah_au FROM tb_periksa WHERE id_poli = 1 AND id_status_periksa = 1 AND tanggal = CURRENT_DATE()";
+        return $this->db->query($query);
+    }
+    function jGigi(){
+        $query = "SELECT COUNT(tb_periksa.id_user) AS jumlah_ag FROM tb_periksa WHERE id_poli = 2 AND id_status_periksa = 1 AND tanggal = CURRENT_DATE()";
+        return $this->db->query($query);
+    }
 }

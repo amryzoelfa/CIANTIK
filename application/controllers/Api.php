@@ -200,6 +200,17 @@ class Api extends CI_Controller
         echo json_encode($data->result_array());
     }
 
+    public function getJumum(){
+        $data = $this->Api_model->Jumum();
+        header('content-type: application/json');
+        echo json_encode($data->result_array());
+    }
+
+    public function getJgigi(){
+        $data = $this->Api_model->JGigi();
+        header('content-type: application/json');
+        echo json_encode($data->result_array());
+    }
     // public function LoginApi()
     // {
     //     if ($_SERVER['REQUEST_METHOD'] == 'POST') {

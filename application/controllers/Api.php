@@ -158,15 +158,17 @@ class Api extends CI_Controller
         echo json_encode($data->row_array());
     }
 
-    public function insertUmum()
+    public function insertUmum($id_user)
     {
-        $data = $this->Api_model->insertUmum();
+        $data = $this->Api_model->insertUmum($id_user);
+        header('content-type: application/json');
         echo json_encode($data->result_array());
     }
 
     public function insertGigi()
     {
         $data = $this->Api_model->insertGigi();
+        header('content-type: application/json');
         echo json_encode($data->result_array());
     }
 

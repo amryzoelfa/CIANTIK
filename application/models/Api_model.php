@@ -10,7 +10,7 @@ class Api_model extends CI_Model
     //Model Login
     function loginApi($username, $password)
     {
-        $this->db->select('id_user, id_akses, no_identitas, nama, alamat, username, password, foto'); //id_user, id_akses, no_identitas, nama, jenis_kelamin, tempat_lahir, tanggal_lahir, alamat, no_hp, username, password, foto
+        $this->db->select('id_user, id_akses, no_identitas, nama, jenis_kelamin, tempat_lahir, tanggal_lahir, no_hp, alamat, username, password, foto'); //id_user, id_akses, no_identitas, nama, jenis_kelamin, tempat_lahir, tanggal_lahir, alamat, no_hp, username, password, foto
         $this->db->from('tb_user');
         $this->db->where('username', $username);
         $this->db->where('password', $password);
@@ -145,9 +145,10 @@ class Api_model extends CI_Model
         }
     }
 
-    public function insertUmum()
+    public function insertUmum($id_user)
     {
-        $id_user = $this->session->userdata("session_id");
+        //$id_user = $this->session->userdata("session_id");
+        //$id_user = $this->input->post('id_user');
         $tanggal = date("Y-m-d");
         $antrian = $this->tambahUmum();
         $query = "INSERT INTO tb_periksa(id_periksa, id_user, id_poli, tanggal, no_antrian, id_status_periksa, id_status_obat) VALUES ('', '$id_user', '1', '$tanggal', '$antrian', '1','1')";

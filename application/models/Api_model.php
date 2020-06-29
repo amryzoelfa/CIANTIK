@@ -47,7 +47,7 @@ class Api_model extends CI_Model
         $this->db->where('tb_periksa.id_user', $id_user);
         $query = $this->db->get("");
         return $query;
-    }
+    } 
 
     //Model Data Dokter
     function getDokter()
@@ -84,26 +84,6 @@ class Api_model extends CI_Model
         $this->db->where('tb_periksa.id_poli', 2);
         $this->db->where('tb_periksa.tanggal', 'NOW()');
         $this->db->group_by('tb_periksa.id_periksa');
-        $query = $this->db->get("");
-        return $query;
-    }
-
-    function jumlahUmum()
-    {
-        $this->db->select('COUNT(no_antrian)');
-        $this->db->from('tb_periksa');
-        $this->db->where('tanggal', 'NOW()');
-        $this->db->where('id_poli', 1);
-        $query = $this->db->get("");
-        return $query;
-    }
-
-    function jumlahGigi()
-    {
-        $this->db->select('COUNT(no_antrian)');
-        $this->db->from('tb_periksa');
-        $this->db->where('tanggal', 'NOW()');
-        $this->db->where('id_poli', 2);
         $query = $this->db->get("");
         return $query;
     }

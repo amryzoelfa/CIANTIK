@@ -172,20 +172,6 @@ class Api extends CI_Controller
         echo json_encode($data->result_array());
     }
 
-    public function jumlahUmum()
-    {
-        $data = $this->Api_model->jumlahUmum();
-        header('content-type: application/json');
-        echo json_encode($data->result_array());
-    }
-
-    public function jumlahGigi()
-    {
-        $data = $this->Api_model->jumlahGigi();
-        header('content-type: application/json');
-        echo json_encode($data->result_array());
-    }
-
     public function listUmum()
     {
         $data = $this->Api_model->getListUmum();
@@ -211,53 +197,4 @@ class Api extends CI_Controller
         header('content-type: application/json');
         echo json_encode($data->result_array());
     }
-    // public function LoginApi()
-    // {
-    //     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    //         $username = $_POST['username'];
-    //         $password = md5($_POST['password']);
-
-    //         $response = $this->Api_model->loginApi($username, $password)->result();
-
-    //         $result = array();
-    //         $result['login'] = array();
-    //         if ($response != FALSE) {
-    //             foreach ($response as $row) {
-    //                 $index['id_user'] = $row->id_user;
-    //                 $index['id_akses'] = $row->id_akses;
-    //                 $index['no_identitas'] = $row->no_identitas;
-    //                 $index['username'] = $row->username;
-    //                 $index['nama'] = $row->nama;
-    //                 $index['jenis_kelamin'] = $row->jenis_kelamin;
-    //                 $index['tempat_lahir'] = $row->tempat_lahir;
-    //                 $index['tanggal_lahir'] = $row->tanggal_lahir;
-    //                 $index['alamat'] = $row->alamat;
-    //                 $index['no_hp'] = $row->no_hp;
-    //                 $index['foto'] = $row->foto;
-    //             }
-    //             array_push($result['login'], $index);
-
-    //             $result['success'] = "1";
-    //             $result['message'] = "success";
-    //             header('content-type: application/json');
-    //             echo json_encode($result);
-    //         } else {
-    //             $result['success'] = "0";
-    //             $result['message'] = "error";
-    //             header('content-type: application/json');
-    //             echo json_encode($result);
-    //         }
-    //     }
-    // }
-
-    // public function gantipass()
-    // {
-    //     $paslam = $this->input->post('paslam');
-    //     $cek = $this->Api_model->getProfile($id)->result();
-    //     if ($paslam != $cek['password']) {
-    //         $result["message"] = "Password Lama Salah!";
-    //     } else {
-    //         $this->Api_model->updatepass();
-    //     }
-    // }
 }

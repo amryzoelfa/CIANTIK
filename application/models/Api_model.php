@@ -47,21 +47,16 @@ class Api_model extends CI_Model
         $this->db->where('tb_periksa.id_user', $id_user);
         $query = $this->db->get("");
         return $query;
-    } 
+    }
 
     //Model Data Dokter
     function getDokter()
     {
-        // $this->db->select('*');
-        // $this->db->from('tb_user');
-        //$this->db->join('tb_akses', 'tb_user.id_akses=tb_akses.id_akses');
-        // $this->db->where('tb_user.id_akses', 3);
-        // $this->db->where('tb_user.id_akses', 4);
-        //$query = $this->db->get("tb_user", 2, 2);
         $query = "SELECT * FROM tb_user JOIN tb_akses ON tb_user.id_akses=tb_akses.id_akses WHERE tb_user.id_akses=3 OR tb_user.id_akses=4";
         return $this->db->query($query);
     }
 
+    //Antrian Umum Sekarang
     function getAntrianUmum()
     {
         $this->db->select('no_antrian');
@@ -75,6 +70,7 @@ class Api_model extends CI_Model
         return $query;
     }
 
+    //Antrian Gigi Sekarang
     function getAntrianGigi()
     {
         $this->db->select('no_antrian');
@@ -88,11 +84,27 @@ class Api_model extends CI_Model
         return $query;
     }
 
+    //Jumlah Yang Mengantri Poli umum
+    function jumlahUmum()
+    {
+        $query = "SELECT COUNT(tb_periksa.no_antrian) AS jumlah_au FROM tb_periksa WHERE id_poli = 1 AND id_status_periksa = 1 AND tanggal = CURRENT_DATE()";
+        return $this->db->query($query);
+    }
+
+    //Jumlah Yang Mengantri Poli Gigi
+    function jumlahGigi()
+    {
+        $query = "SELECT COUNT(tb_periksa.no_antrian) AS jumlah_ag FROM tb_periksa WHERE id_poli = 2 AND id_status_periksa = 1 AND tanggal = CURRENT_DATE()";
+        return $this->db->query($query);
+    }
+
+    //mengambil data id profil
     function getProfile($id)
     {
         return $this->db->get_where('tb_user', ['id_user' => $id]);
     }
 
+    //query update
     function updatepass($id)
     {
         $data = [
@@ -125,10 +137,10 @@ class Api_model extends CI_Model
         }
     }
 
-    public function insertUmum($id_user)
+    public function insertUmum()
     {
         //$id_user = $this->session->userdata("session_id");
-        //$id_user = $this->input->post('id_user');
+        $id_user = $this->input->post('id_user');
         $tanggal = date("Y-m-d");
         $antrian = $this->tambahUmum();
         $query = "INSERT INTO tb_periksa(id_periksa, id_user, id_poli, tanggal, no_antrian, id_status_periksa, id_status_obat) VALUES ('', '$id_user', '1', '$tanggal', '$antrian', '1','1')";
@@ -160,7 +172,8 @@ class Api_model extends CI_Model
 
     public function insertGigi()
     {
-        $id_user = $this->session->userdata("session_id");
+        //$id_user = $this->session->userdata("session_id");
+        $id_user = $this->input->post('id_user');
         $tanggal = date("Y-m-d");
         $antrian = $this->tambahGigi();
         $query = "INSERT INTO tb_periksa(id_periksa, id_user, id_poli, tanggal, no_antrian, id_status_periksa, id_status_obat) VALUES ('', '$id_user', '2', '$tanggal', '$antrian', '1','1')";
@@ -188,41 +201,24 @@ class Api_model extends CI_Model
 
     function getListUmum()
     {
-        //SELECT * FROM tb_periksa, tb_user, tb_status, tb_poli WHERE tb_periksa.id_user=tb_user.id_user AND 
-        //tb_periksa.id_status_periksa=tb_status.id_status 
-        //AND tb_periksa.id_poli=tb_poli.id_poli AND tb_periksa.id_poli=1 AND tb_periksa.tanggal=CURRENT_DATE()
-        // $this->db->select('*');
-        // $this->db->from('tb_periksa');
-        // $this->db->join('tb_user', 'tb_periksa.id_user=tb_user.id_user');
-        // $this->db->join('tb_poli', 'tb_periksa.id_poli=tb_poli.id_poli');
-        // $this->db->join('tb_status', 'tb_periksa.id_status_periksa=tb_status.id_status');
-        // $this->db->where('tb_periksa.id_poli', 1);
-        // $this->db->where('tb_periksa.tanggal', 'CIRRENT_DATE()');
-        // $this->db->group_by('tb_periksa.id_periksa');
         $query = "SELECT * FROM tb_periksa, tb_user, tb_status, tb_poli WHERE tb_periksa.id_user=tb_user.id_user AND tb_periksa.id_status_periksa=tb_status.id_status  AND tb_periksa.id_poli=tb_poli.id_poli AND tb_periksa.id_poli=1 AND tb_periksa.tanggal=CURRENT_DATE()";
-        return $this->db->query($query);
-        // return $query;
+        return $this->db->query($query);;
     }
 
     function getListGigi()
     {
-        // $this->db->select('no_antrian, tanggal, nama, ket_status');
-        // $this->db->from('tb_periksa');
-        // $this->db->join('tb_user', 'tb_periksa.id_user=tb_user.id_user');
-        // $this->db->join('tb_status', 'tb_periksa.id_status_periksa=tb_status.id_status');
-        // $this->db->where('tb_periksa.id_poli', 2);
-        // $this->db->where('tb_periksa.tanggal', 'NOW()');
-        // $this->db->group_by('tb_periksa.id_periksa');
-        // $query = $this->db->get("");
-        // return $query;
         $query = "SELECT * FROM tb_periksa, tb_user, tb_status, tb_poli WHERE tb_periksa.id_user=tb_user.id_user AND tb_periksa.id_status_periksa=tb_status.id_status  AND tb_periksa.id_poli=tb_poli.id_poli AND tb_periksa.id_poli=2 AND tb_periksa.tanggal=CURRENT_DATE()";
         return $this->db->query($query);
     }
-    function jUmum(){
+
+    function jUmum()
+    {
         $query = "SELECT COUNT(tb_periksa.id_user) AS jumlah_au FROM tb_periksa WHERE id_poli = 1 AND id_status_periksa = 1 AND tanggal = CURRENT_DATE()";
         return $this->db->query($query);
     }
-    function jGigi(){
+
+    function jGigi()
+    {
         $query = "SELECT COUNT(tb_periksa.id_user) AS jumlah_ag FROM tb_periksa WHERE id_poli = 2 AND id_status_periksa = 1 AND tanggal = CURRENT_DATE()";
         return $this->db->query($query);
     }

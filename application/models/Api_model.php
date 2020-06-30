@@ -98,6 +98,11 @@ class Api_model extends CI_Model
         return $this->db->query($query);
     }
 
+    function input_data($data, $table)
+    {
+        $this->db->insert($table, $data);
+    }
+
     //mengambil data id profil
     function getProfile($id)
     {

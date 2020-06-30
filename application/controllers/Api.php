@@ -167,12 +167,42 @@ class Api extends CI_Controller
         echo json_encode($data->row_array());
     }
 
-    public function insertUmum()
+    public function insertUmum($id_user)
     {
-        $id_user = $this->input->post('id_user');
-        $data = $this->Api_model->insertUmum($id_user);
-        header('content-type: application/json');
-        echo json_encode($data->result_array());
+        //$id_user = $this->input->post('id_user');
+        $antrian = $this->Api_model->tambahUmum();
+        $tanggal = date("Y-m-d");
+        $periksa = 1;
+        $obat = 1;
+        $poli = 1;
+        // $data = $this->Api_model->insertUmum($id_user);
+        // header('content-type: application/json');
+        // echo json_encode($data->result_array());
+        $data = array(
+            'id_user' => $id_user,
+            'id_poli' => $poli,
+            'tanggal' => $tanggal,
+            'no_antrian' => $antrian,
+            'id_status_periksa' => $periksa,
+            'id_status_obat' => $obat
+        );
+        if ($this->Api_model->input_data($data, 'tb_periksa')) {
+            $response = array(
+                'status' => true,
+                'message' => 'Berhasil Ambil Antrian'
+            );
+
+            header('content-type: application/json');
+            echo json_encode($response);
+        } else {
+            $response = array(
+                'status' => false,
+                'message' => 'Gagal Ambil Antrian'
+            );
+
+            header('content-type: application/json');
+            echo json_encode($response);
+        }
     }
 
     public function insertGigi()

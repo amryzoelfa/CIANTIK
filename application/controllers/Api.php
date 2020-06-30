@@ -197,7 +197,7 @@ class Api extends CI_Controller
         } else {
             $response = array(
                 'status' => false,
-                'message' => 'Gagal Ambil Antrian'
+                'message' => 'Berhasil Ambil Antrian'
             );
 
             header('content-type: application/json');
@@ -205,12 +205,42 @@ class Api extends CI_Controller
         }
     }
 
-    public function insertGigi()
+    public function insertGigi($id_user)
     {
-        $id_user = $this->input->post('id_user');
-        $data = $this->Api_model->insertGigi($id_user);
-        header('content-type: application/json');
-        echo json_encode($data->result_array());
+        // $id_user = $this->input->post('id_user');
+        // $data = $this->Api_model->insertGigi($id_user);
+        // header('content-type: application/json');
+        // echo json_encode($data->result_array());
+        $antrian = $this->Api_model->tambahGigi();
+        $tanggal = date("Y-m-d");
+        $periksa = 1;
+        $obat = 1;
+        $poli = 2;
+        $data = array(
+            'id_user' => $id_user,
+            'id_poli' => $poli,
+            'tanggal' => $tanggal,
+            'no_antrian' => $antrian,
+            'id_status_periksa' => $periksa,
+            'id_status_obat' => $obat
+        );
+        if ($this->Api_model->input_data($data, 'tb_periksa')) {
+            $response = array(
+                'status' => true,
+                'message' => 'Berhasil Ambil Antrian'
+            );
+
+            header('content-type: application/json');
+            echo json_encode($response);
+        } else {
+            $response = array(
+                'status' => false,
+                'message' => 'Berhasil Ambil Antrian'
+            );
+
+            header('content-type: application/json');
+            echo json_encode($response);
+        }
     }
 
     public function jumlahUmum()
@@ -253,6 +283,20 @@ class Api extends CI_Controller
     public function getJgigi()
     {
         $data = $this->Api_model->JGigi();
+        header('content-type: application/json');
+        echo json_encode($data->result_array());
+    }
+
+    public function cetakUmum($id_user)
+    {
+        $data = $this->Api_model->cetakUmum($id_user);
+        header('content-type: application/json');
+        echo json_encode($data->result_array());
+    }
+
+    public function cetakGigi($id_user)
+    {
+        $data = $this->Api_model->cetakGigi($id_user);
         header('content-type: application/json');
         echo json_encode($data->result_array());
     }

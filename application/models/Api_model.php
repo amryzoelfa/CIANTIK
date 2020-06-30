@@ -227,4 +227,20 @@ class Api_model extends CI_Model
         $query = "SELECT COUNT(tb_periksa.id_user) AS jumlah_ag FROM tb_periksa WHERE id_poli = 2 AND id_status_periksa = 1 AND tanggal = CURRENT_DATE()";
         return $this->db->query($query);
     }
+
+    //Antrian Umum pasien yang mengambil antrian
+    public function cetakUmum($id_user)
+    {
+        //$id_user = $this->session->userdata("session_id");
+        $query = "SELECT tanggal, MAX(no_antrian) as umum from tb_periksa where tanggal = CURRENT_DATE() and id_user = '$id_user' and id_poli = 1";
+        return $this->db->query($query);
+    }
+
+    //Antrian gigi pasien yang mengambil antrian
+    public function cetakGigi($id_user)
+    {
+        //$id_user = $this->session->userdata("session_id");
+        $query = "SELECT tanggal, MAX(no_antrian) as gigi from tb_periksa where tanggal = CURRENT_DATE() and id_user = '$id_user' and id_poli = 2";
+        return $this->db->query($query);
+    }
 }
